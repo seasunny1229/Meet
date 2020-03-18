@@ -1,0 +1,14 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.bmoblib" >
+
+    <application>
+
+        <!--Bmob-->
+        <provider
+            android:name="cn.bmob.v3.util.BmobContentProvider"
+            android:authorities="com.example.meet.BmobContentProvider" />
+
+    </application>
+
+
+</manifest>

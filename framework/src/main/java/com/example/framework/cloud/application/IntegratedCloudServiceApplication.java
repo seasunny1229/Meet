@@ -1,0 +1,107 @@
+package com.example.framework.cloud.application;
+
+import com.example.framework.backend.application.BackendServiceApplication;
+import com.example.framework.backend.service.IUserConnectionService;
+import com.example.framework.backend.service.IUserInfoService;
+import com.example.framework.backend.service.IUserLoginService;
+import com.example.framework.backend.service.IUserQueryService;
+import com.example.framework.cloud.bmob.service.BmobUserInfoService;
+import com.example.framework.cloud.bmob.service.BmobUserLoginService;
+import com.example.framework.cloud.bmob.service.BmobUserQueryService;
+import com.example.framework.cloud.rongcloud.service.RongCloudUserConnectionService;
+import com.example.framework.process.ProcessUtil;
+
+import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobInstallation;
+import cn.bmob.v3.BmobInstallationManager;
+import cn.bmob.v3.InstallationListener;
+import cn.bmob.v3.exception.BmobException;
+import io.rong.RongCloud;
+import io.rong.imlib.RongIMClient;
+
+/**
+*
+* 用Bmob集成云环境管理用户数据
+*
+*
+*/
+
+public abstract class IntegratedCloudServiceApplication extends BackendServiceApplication {
+
+    private RongCloud rongCloud;
+
+    // region service
+    @Override
+    protected void initBackendServiceModule() {
+        initBmob();
+        initRongCloud();
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public <T> T getBackendService(Class<T> clazz) {
+        if(clazz == IUserLoginService.class){
+            return (T) BmobUserLoginService.getInstance();
+        }
+        else if(clazz == IUserInfoService.class){
+            return (T) BmobUserInfoService.getInstance();
+        }
+        else if(clazz == IUserQueryService.class){
+            return (T) BmobUserQueryService.getInstance();
+        }
+        else if(clazz == IUserConnectionService.class){
+            return (T) RongCloudUserConnectionService.getInstance();
+        }
+
+        return null;
+    }
+
+    // endregion
+
+    // region initialize module
+    private void initBmob(){
+        // 初始化bmob
+        Bmob.initialize(this, getBmobApplicationId());
+
+        // 短信验证码功能
+        Bmob.resetDomain("http://open-vip.bmob.cn/8/");
+        BmobInstallationManager.getInstance().initialize(new InstallationListener<BmobInstallation>() {
+            @Override
+            public void done(BmobInstallation bmobInstallation, BmobException e) {
+
+            }
+        });
+
+    }
+
+    private void initRongCloud(){
+
+        // 融云 server
+        rongCloud = RongCloud.getInstance(getRongCloudAppKey(), getRongCloudAppSecret());
+
+        // IMLib
+        RongIMClient.init(this, getRongCloudAppKey());
+
+    }
+    // endregion
+
+    // region config
+    protected abstract String getAppId();
+
+    protected abstract String getBmobApplicationId();
+
+    protected abstract String getRongCloudAppKey();
+
+    protected abstract String getRongCloudAppSecret();
+    // endregion
+
+    // region getter and setter
+    public RongCloud getRongCloud() {
+        return rongCloud;
+    }
+
+
+    // endregion
+
+
+}

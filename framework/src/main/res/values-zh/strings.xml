@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">框架</string>
+
+
+    <!-- backend system error -->
+    <string name="backend_system_error">系统繁忙，请稍后再试</string>
+
+</resources>

@@ -1,0 +1,86 @@
+apply plugin: 'com.android.library'
+
+android {
+
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    // http client
+    useLibrary 'org.apache.http.legacy'
+
+    buildTypes {
+        debug{
+            buildConfigField("boolean","LOG_DEBUG","true")
+            buildConfigField("String","LOG_TAG","\"framework\"")
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+}
+
+dependencies {
+
+    // android
+    api rootProject.ext.dependencies[ "appcompat"]
+
+    // android test
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    // jar
+    api fileTree(include: ['*.jar'], dir: 'libs')
+
+    // 3D cloud
+    api 'com.moxun:tagcloudlib:1.2.0'
+
+    // circle image view
+    api 'de.hdodenhof:circleimageview:3.0.0'
+
+    // recycler view
+    api 'androidx.recyclerview:recyclerview:1.0.0'
+
+    // rx
+    api "io.reactivex.rxjava2:rxjava:2.2.2"
+    api 'io.reactivex.rxjava2:rxandroid:2.1.0'
+
+    // okio, okhttp
+    api 'com.squareup.okio:okio:2.1.0'
+    api 'com.squareup.okhttp3:okhttp:3.12.0'
+
+    // gson
+    api rootProject.ext.dependencies['gson']
+
+    // glide
+    api 'com.github.bumptech.glide:glide:4.9.0'
+
+    // bmob SDK
+    implementation project(':BmobLib')
+
+    // rong cloud IM SDK
+    implementation project(':RongCloudIMLib')
+    implementation project(':RongCloudCallLib')
+    implementation project(':RongCloudAppServer')
+
+
+}

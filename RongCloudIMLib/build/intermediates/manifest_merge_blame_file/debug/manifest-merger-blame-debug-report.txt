@@ -1,0 +1,110 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="io.rong.imlib"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="19"
+8-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml
+10
+11    <!-- 保存图片，拍照等 -->
+12    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+12-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:5:5-81
+12-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:5:22-78
+13
+14    <!-- 网络 -->
+15    <uses-permission android:name="android.permission.INTERNET" />
+15-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:8:5-67
+15-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:8:22-64
+16    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+16-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:9:5-79
+16-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:9:22-76
+17    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+17-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:10:5-76
+17-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:10:22-73
+18
+19    <!-- 消息通道保活 -->
+20    <uses-permission android:name="android.permission.WAKE_LOCK" />
+20-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:13:5-68
+20-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:13:22-65
+21
+22    <!-- 定位，如果您需要定位相关的功能，可以打开以下注释 -->
+23    <!-- <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> -->
+24    <application>
+24-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:18:5-62:19
+25
+26        <!-- imlib config begin -->
+27        <service
+27-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:21:9-23:38
+28            android:name="io.rong.imlib.ipc.RongService"
+28-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:22:13-57
+29            android:process=":ipc" />
+29-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:23:13-35
+30
+31        <receiver android:name="io.rong.imlib.ConnectChangeReceiver" />
+31-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:25:9-27:15
+31-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:26:13-63
+32        <receiver
+32-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:29:9-31:38
+33            android:name="io.rong.imlib.HeartbeatReceiver"
+33-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:30:13-59
+34            android:process=":ipc" />
+34-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:31:13-35
+35        <!-- imlib config end -->
+36
+37
+38        <!-- 必选： SDK 核心功能 -->
+39        <service
+39-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:35:9-39:46
+40            android:name="io.rong.push.rongpush.PushService"
+40-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:36:13-61
+41            android:exported="true"
+41-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:37:13-36
+42            android:permission="android.permission.BIND_JOB_SERVICE"
+42-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:38:13-69
+43            android:process="io.rong.push" />
+43-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:39:13-43
+44
+45        <!-- push 相关事件接收器 -->
+46        <receiver
+46-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:42:9-57:20
+47            android:name="io.rong.push.rongpush.PushReceiver"
+47-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:43:13-62
+48            android:process="io.rong.push" > <!-- 此处进程可以改名，名称需要和PushService所在进程统一 -->
+48-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:44:13-43
+49            <!-- 心跳事件和网络切换事件监听,必须 -->
+50            <intent-filter>
+50-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:46:13-49:29
+51                <action android:name="io.rong.push.intent.action.HEART_BEAT" />
+51-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:47:17-80
+51-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:47:25-77
+52                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+52-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:48:17-79
+52-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:48:25-76
+53            </intent-filter>
+54
+55            <!-- 部分用户事件监听, 用来提高推送拉活率; 可移除 -->
+56            <intent-filter>
+56-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:52:13-56:29
+57                <action android:name="android.intent.action.USER_PRESENT" />
+57-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:53:17-77
+57-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:53:25-74
+58                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+58-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:54:17-87
+58-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:54:25-84
+59                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+59-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:55:17-90
+59-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/AndroidManifest.xml:55:25-87
+60            </intent-filter>
+61        </receiver>
+62
+63        <!-- 必选： SDK 核心功能 -->
+64
+65
+66        <!-- end -->
+67    </application>
+68
+69</manifest>

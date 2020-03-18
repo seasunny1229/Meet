@@ -1,0 +1,70 @@
+apply plugin: 'com.android.application'
+
+android {
+
+
+    // 调试，在settings-compiler  加入command -PdevBuild
+    if (rootProject.hasProperty('devBuild')) {
+
+        // 避免激活旧的multidex 针对android5.0（API21)以下，整个APP的方法数不得超过64K， 不然会做分包处理
+        // 禁止multidex apk构建
+        splits.abi.enable = false
+        splits.density.enable = false
+
+        // 禁用PNG压缩
+        aaptOptions.cruncherEnabled = false
+
+    }
+
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+
+    defaultConfig {
+        applicationId rootProject.ext.android["applicationId"]
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // 最小化打包资源文件，调试才会用到
+        resConfigs("zh", "xxhdpi")
+
+        ndk {
+            //"armeabi", "x86","x86_64"
+            //abiFilters "armeabi-v7a", "arm64-v8a"
+        }
+
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField("boolean", "LOG_DEBUG", "true")
+            buildConfigField("String", "LOG_TAG", "\"Meet\"")
+            buildConfigField("String", "SP_NAME", "\"CONFIG\"")
+        }
+        release {
+            buildConfigField("boolean", "LOG_DEBUG", "true")
+            buildConfigField("String", "LOG_TAG", "\"Meet\"")
+            buildConfigField("String", "SP_NAME", "\"CONFIG\"")
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    // multidex
+    implementation 'com.android.support:multidex:1.0.3'
+
+    // 添加framework
+    implementation project(path: ':framework')
+}

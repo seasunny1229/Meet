@@ -1,0 +1,69 @@
+<resources>
+
+    <!-- APP -->
+    <string name="app_name">遇见</string>
+
+    <!-- index -->
+    <string name="app_index_text">相遇总是美好</string>
+
+    <!-- guide -->
+    <string name="text_guide_skip">跳过</string>
+    <string name="text_guide_pager_1">每个人，都是一颗孤独的星球</string>
+    <string name="text_guide_pager_2">我们在黑夜中寻找光明</string>
+    <string name="text_guide_pager_3">如果遇见，请面带微笑</string>
+
+    <!-- login -->
+    <string name="text_login_phone">电话号码</string>
+    <string name="text_login_code">验证码</string>
+    <string name="text_login_send">发送</string>
+    <string name="text_login_login">登录</string>
+    <string name="text_login_agreement_1">我已阅读并同意</string>
+    <string name="text_login_agreement_2"><u>用户协议</u></string>
+    <string name="text_login_phone_null">电话号码不能为空</string>
+    <string name="text_login_phone_not_valid">电话号码无效</string>
+    <string name="text_login_code_error">验证码错误</string>
+    <string name="text_login_code_null">验证码不能为空</string>
+    <string name="text_login_failure">登录失败，请稍后再试</string>
+
+    <!-- main -->
+    <string name="text_main_star">星球</string>
+    <string name="text_main_square">广场</string>
+    <string name="text_main_chat">聊天</string>
+    <string name="text_main_me">我的</string>
+
+    <string name="text_mian_dialog_text1">欢迎来到遇见App</string>
+    <string name="text_mian_dialog_text2">听说你是第一次使用</string>
+    <string name="text_mian_dialog_text3">快来填写资料吧</string>
+
+    <string name="text_dialog_camera">拍一张</string>
+    <string name="text_dialog_ablum">从相册选择</string>
+    <string name="text_dialog_cancel">返回</string>
+
+    <string name="text_add_friend_contact">从通讯录导入</string>
+    <string name="text_add_friend_title">搜索结果</string>
+    <string name="text_add_friend_no_me">不能查询自己</string>
+
+    <string name="text_upload_photo_title">一张有个性的头像可以吸引人</string>
+    <string name="text_upload_nickname_title">一个名字，一个故事</string>
+    <string name="text_upload_nickname">昵称</string>
+    <string name="text_upload_done">完成</string>
+
+    <string name="text_search_age">岁</string>
+
+    <string name="text_user_request_succeed">请求成功</string>
+    <string name="text_user_request_fail">请求失败</string>
+
+    <string name="text_me_item_title_1">个人信息</string>
+    <string name="text_me_item_title_3">新朋友</string>
+    <string name="text_me_item_title_4">隐私设置</string>
+    <string name="text_me_item_title_5">分享</string>
+    <string name="text_me_item_title_6">设置</string>
+
+    <string name="text_main_star_1">随机</string>
+    <string name="text_main_star_2">灵魂</string>
+    <string name="text_main_star_3">缘分</string>
+    <string name="text_main_star_4">恋爱</string>
+
+    <!--2019.11.18 新增-->
+
+</resources>

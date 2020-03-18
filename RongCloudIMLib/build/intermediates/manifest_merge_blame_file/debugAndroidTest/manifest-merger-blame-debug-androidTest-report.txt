@@ -1,0 +1,111 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="io.rong.imlib.test" >
+4
+5    <uses-sdk
+5-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5565945323221714209.xml:5:5-74
+6        android:minSdkVersion="19"
+6-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5565945323221714209.xml:5:15-41
+7        android:targetSdkVersion="29" />
+7-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5565945323221714209.xml:5:42-71
+8
+9    <instrumentation
+9-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5565945323221714209.xml:11:5-15:68
+10        android:name="android.test.InstrumentationTestRunner"
+10-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5565945323221714209.xml:11:22-75
+11        android:functionalTest="false"
+11-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5565945323221714209.xml:14:22-52
+12        android:handleProfiling="false"
+12-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5565945323221714209.xml:13:22-53
+13        android:label="Tests for io.rong.imlib.test"
+13-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5565945323221714209.xml:15:22-66
+14        android:targetPackage="io.rong.imlib.test" />
+14-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5565945323221714209.xml:12:22-64
+15    <!-- 保存图片，拍照等 -->
+16    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 网络 -->
+16-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-81
+16-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:22-78
+17    <uses-permission android:name="android.permission.INTERNET" />
+17-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:5-67
+17-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:22-64
+18    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+18-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:16:5-79
+18-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:16:22-76
+19    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 消息通道保活 -->
+19-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:5-76
+19-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:22-73
+20    <uses-permission android:name="android.permission.WAKE_LOCK" />
+20-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:20:5-68
+20-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:20:22-65
+21
+22    <application
+22-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5565945323221714209.xml:7:5-9:19
+23        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+23-->[androidx.core:core:1.0.0] /Users/cuiting/.gradle/caches/transforms-2/files-2.1/ec609e8cee787e2dff3592c66b08a66a/core-1.0.0/AndroidManifest.xml:22:18-86
+24        android:debuggable="true" >
+24-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5565945323221714209.xml:7:18-43
+25        <uses-library android:name="android.test.runner" />
+25-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5565945323221714209.xml:8:9-60
+25-->/Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5565945323221714209.xml:8:23-57
+26        <!-- imlib config begin -->
+27        <service
+27-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:27:9-29:38
+28            android:name="io.rong.imlib.ipc.RongService"
+28-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:28:13-57
+29            android:process=":ipc" />
+29-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:29:13-35
+30
+31        <receiver android:name="io.rong.imlib.ConnectChangeReceiver" />
+31-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:31:9-72
+31-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:31:19-69
+32        <receiver
+32-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:32:9-34:38
+33            android:name="io.rong.imlib.HeartbeatReceiver"
+33-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:33:13-59
+34            android:process=":ipc" /> <!-- imlib config end -->
+34-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:34:13-35
+35        <!-- 必选： SDK 核心功能 -->
+36        <service
+36-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:39:9-43:46
+37            android:name="io.rong.push.rongpush.PushService"
+37-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:40:13-61
+38            android:exported="true"
+38-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:41:13-36
+39            android:permission="android.permission.BIND_JOB_SERVICE"
+39-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:42:13-69
+40            android:process="io.rong.push" /> <!-- push 相关事件接收器 -->
+40-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:43:13-43
+41        <receiver
+41-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:46:9-61:20
+42            android:name="io.rong.push.rongpush.PushReceiver"
+42-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:47:13-62
+43            android:process="io.rong.push" > <!-- 此处进程可以改名，名称需要和PushService所在进程统一 -->
+43-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:48:13-43
+44            <!-- 心跳事件和网络切换事件监听,必须 -->
+45            <intent-filter>
+45-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:50:13-53:29
+46                <action android:name="io.rong.push.intent.action.HEART_BEAT" />
+46-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:51:17-80
+46-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:51:25-77
+47                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+47-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:52:17-79
+47-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:52:25-76
+48            </intent-filter>
+49
+50            <!-- 部分用户事件监听, 用来提高推送拉活率; 可移除 -->
+51            <intent-filter>
+51-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:56:13-60:29
+52                <action android:name="android.intent.action.USER_PRESENT" />
+52-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:57:17-77
+52-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:57:25-74
+53                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+53-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:58:17-87
+53-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:58:25-84
+54                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+54-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:59:17-90
+54-->[__tested_artifact__::RongCloudIMLib] /Users/cuiting/AndroidStudioProjects/Meet/RongCloudIMLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:59:25-87
+55            </intent-filter>
+56        </receiver>
+57    </application>
+58
+59</manifest>

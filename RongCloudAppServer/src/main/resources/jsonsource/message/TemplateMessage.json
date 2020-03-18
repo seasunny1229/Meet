@@ -1,0 +1,23 @@
+{
+  "senderId": "OScHVP1tQ",
+  "objectName": "RC:TxtMsg",
+  "template": {
+    "content": "{name}, 语文成绩 {score} 分"
+  },
+  "content": {
+    "NomSvNyME": {
+      "data": {
+        "{name}": "小明",
+        "{score}": "90"
+      },
+      "push": "{name} 你的成绩出来了"
+    },
+    "8LNK7JOeR": {
+      "data": {
+        "{name}": "小红",
+        "{score}": "95"
+      },
+      "push": "{name} 你的成绩出来了"
+    }
+  }
+}

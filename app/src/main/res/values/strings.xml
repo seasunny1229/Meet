@@ -1,0 +1,70 @@
+<resources>
+
+    <!-- APP -->
+    <string name="app_name">Meet</string>
+
+    <!-- index -->
+    <string name="app_index_text">It\'s always nice to meet</string>
+
+    <!-- guide -->
+    <string name="text_guide_skip">skip</string>
+    <string name="text_guide_pager_1">Everyone is a lonely planet</string>
+    <string name="text_guide_pager_2">We seek light in the dark</string>
+    <string name="text_guide_pager_3">If you meet, please smile</string>
+
+    <!-- login -->
+    <string name="text_login_phone">phone number</string>
+    <string name="text_login_code">code</string>
+    <string name="text_login_send">send</string>
+    <string name="text_login_login">login</string>
+    <string name="text_login_agreement_1">I have read and agree</string>
+    <string name="text_login_agreement_2"><u>User agreement</u></string>
+    <string name="text_login_phone_null">The phone number cannot be empty</string>
+    <string name="text_login_phone_not_valid">The phone number is not valid</string>
+    <string name="text_login_code_null">The captcha cannot be empty</string>
+    <string name="text_login_code_error">Verification code error</string>
+    <string name="text_login_failure">Fail to login, please try again later</string>
+
+    <!-- main -->
+    <string name="text_main_star">star</string>
+    <string name="text_main_square">square</string>
+    <string name="text_main_chat">chat</string>
+    <string name="text_main_me">me</string>
+
+    <string name="text_mian_dialog_text1">Welcome to meet App</string>
+    <string name="text_mian_dialog_text2">I heard this is your first time to use it</string>
+    <string name="text_mian_dialog_text3">Come and fill in the information</string>
+
+    <string name="text_dialog_camera">Take a photo</string>
+    <string name="text_dialog_ablum">Select from album</string>
+    <string name="text_dialog_cancel">Cancel</string>
+
+    <string name="text_add_friend_contact">Import from address book</string>
+    <string name="text_add_friend_title">The search results</string>
+    <string name="text_add_friend_no_me">You can\'t query yourself</string>
+
+    <string name="text_upload_photo_title">A profile picture with personality can attract people</string>
+    <string name="text_upload_nickname_title">A name, a story</string>
+    <string name="text_upload_nickname">nickname</string>
+    <string name="text_upload_done">complete</string>
+
+    <string name="text_search_age">annum</string>
+
+    <string name="text_user_request_succeed">request successful</string>
+    <string name="text_user_request_fail">request fail</string>
+
+    <string name="text_me_item_title_1">user info</string>
+    <string name="text_me_item_title_3">new friend</string>
+    <string name="text_me_item_title_4">Privacy Settings</string>
+    <string name="text_me_item_title_5">share</string>
+    <string name="text_me_item_title_6">setting</string>
+
+    <string name="text_main_star_1">random</string>
+    <string name="text_main_star_2">soul</string>
+    <string name="text_main_star_3">fate</string>
+    <string name="text_main_star_4">love</string>
+
+    <!--2019.11.18 新增-->
+
+
+</resources>

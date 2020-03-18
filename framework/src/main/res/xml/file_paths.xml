@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- path设置为'.'时代表整个存储卡 Environment.getExternalStorageDirectory() + "/path/"   -->
+    <external-path
+        name="external_files"
+        path="." />
+
+</resources>
