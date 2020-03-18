@@ -14,9 +14,11 @@
 
     <!-- login -->
     <string name="text_login_phone">电话号码</string>
+    <string name="text_login_password">密码</string>
     <string name="text_login_code">验证码</string>
     <string name="text_login_send">发送</string>
     <string name="text_login_login">登录</string>
+    <string name="text_login_by_account">通过账号密码登录</string>
     <string name="text_login_agreement_1">我已阅读并同意</string>
     <string name="text_login_agreement_2"><u>用户协议</u></string>
     <string name="text_login_phone_null">电话号码不能为空</string>
@@ -24,6 +26,7 @@
     <string name="text_login_code_error">验证码错误</string>
     <string name="text_login_code_null">验证码不能为空</string>
     <string name="text_login_failure">登录失败，请稍后再试</string>
+    <string name="text_login_account_login_failure">用户名或密码错误</string>
 
     <!-- main -->
     <string name="text_main_star">星球</string>

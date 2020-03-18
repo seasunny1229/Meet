@@ -69,5 +69,27 @@ public class BmobUserLoginService implements IUserLoginService<User> {
         });
     }
 
+    @Override
+    public void loginByAccount(String account, String password, final BackendServiceCallback<User> backendServiceCallback) {
+        BmobUser.loginByAccount(account, password, new LogInListener<IMBmobUser>() {
+            @Override
+            public void done(IMBmobUser imBmobUser, BmobException e) {
+
+                // 登录成功
+                if(e == null){
+                    backendServiceCallback.success(null);
+                }
+
+                // 登录失败
+                else {
+                    BackendServiceException backendServiceException = new BackendServiceException(e);
+                    backendServiceException.setErrorCode(e.getErrorCode());
+                    backendServiceCallback.fail(backendServiceException);
+                }
+            }
+        });
+
+
+    }
 
 }

@@ -71,6 +71,9 @@
         <!-- login -->
         <activity android:name=".activity.LoginActivity" />
 
+        <!-- login by account-->
+        <activity android:name=".activity.LoginByAccountActivity" />
+
         <!-- main -->
         <activity android:name=".activity.MainActivity"></activity>
 

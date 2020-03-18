@@ -23,6 +23,11 @@ public interface IUserLoginService<T extends IUser> {
     // 通过手机验证码登录，并且获取登录用户对象
     void loginByPhone(String phone, String verificationCode, BackendServiceCallback<T> backendServiceCallback);
 
+    // 通过用户名和密码登录，并且获取登录用户对象
+    void loginByAccount(String account, String password, BackendServiceCallback<T> backendServiceCallback);
+
+    // TODO: 通过第三方登录
+
 }
 
 

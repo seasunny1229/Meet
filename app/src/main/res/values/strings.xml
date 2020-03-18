@@ -14,9 +14,11 @@
 
     <!-- login -->
     <string name="text_login_phone">phone number</string>
+    <string name="text_login_password">password</string>
     <string name="text_login_code">code</string>
     <string name="text_login_send">send</string>
     <string name="text_login_login">login</string>
+    <string name="text_login_by_account">login by account</string>
     <string name="text_login_agreement_1">I have read and agree</string>
     <string name="text_login_agreement_2"><u>User agreement</u></string>
     <string name="text_login_phone_null">The phone number cannot be empty</string>
@@ -24,6 +26,7 @@
     <string name="text_login_code_null">The captcha cannot be empty</string>
     <string name="text_login_code_error">Verification code error</string>
     <string name="text_login_failure">Fail to login, please try again later</string>
+    <string name="text_login_account_login_failure">wrong account or password</string>
 
     <!-- main -->
     <string name="text_main_star">star</string>

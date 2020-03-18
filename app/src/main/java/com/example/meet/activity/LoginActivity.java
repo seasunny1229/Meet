@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -22,6 +23,7 @@ import com.example.framework.util.ToastUtil;
 import com.example.framework.view.controller.ImageVerificationDialogController;
 import com.example.framework.view.controller.LoadingDialogController;
 import com.example.framework.view.listener.OnViewResultListener;
+import com.example.meet.BuildConfig;
 import com.example.meet.R;
 import com.example.meet.persistent.SharedPreferenceConstant;
 
@@ -104,6 +106,15 @@ public class LoginActivity extends BaseFullScreenStyleActivity {
                         break;
                 }
                 return false;
+            }
+        });
+
+        // 通过账号密码登录
+        Button loginByAccountButton = findViewById(R.id.btn_login_by_account);
+        loginByAccountButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loginByAccount();
             }
         });
     }
@@ -203,6 +214,8 @@ public class LoginActivity extends BaseFullScreenStyleActivity {
 
     }
 
-
+    private void loginByAccount(){
+        startActivity(new Intent(this, LoginByAccountActivity.class));
+    }
 
 }
