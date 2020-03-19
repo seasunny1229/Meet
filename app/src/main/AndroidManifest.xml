@@ -90,6 +90,9 @@
         <!-- new friend info -->
         <activity android:name=".activity.NewFriendActivity"></activity>
 
+        <!-- friend info -->
+        <activity android:name=".activity.UserInfoActivity"></activity>
+
         <!-- cloud service -->
         <service android:name=".service.CloudService"/>
 

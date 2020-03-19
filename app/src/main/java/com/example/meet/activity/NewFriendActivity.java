@@ -7,6 +7,13 @@ import androidx.annotation.Nullable;
 import com.example.framework.activity.BaseFullScreenStyleActivity;
 import com.example.meet.R;
 
+/**
+ *
+ * 新朋友管理
+ *
+ *
+ */
+
 public class NewFriendActivity extends BaseFullScreenStyleActivity {
 
 

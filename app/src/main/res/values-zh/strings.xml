@@ -85,4 +85,16 @@
     <string name="menu_info_save_text">保存</string>
     <string name="menu_info_save_success">保存成功</string>
 
+    <!-- new friend -->
+    <string name="text_user_add_friend">添加好友</string>
+    <string name="text_user_chat">聊天</string>
+    <string name="text_user_audio_chat">语音聊天</string>
+    <string name="text_user_video_chat">视频聊天</string>
+    <string name="text_user_resuest_succeed">请求成功</string>
+    <string name="text_user_resuest_fail">请求失败</string>
+
+    <string name="text_new_friend_agree">已同意</string>
+    <string name="text_new_friend_no_agree">已拒绝</string>
+
+
 </resources>

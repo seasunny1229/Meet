@@ -10,5 +10,6 @@ public interface IUserQueryService<T extends IUser> {
     // 通过手机号码查询匹配用户
     void findUsersByPhoneNumber(String phoneNumber, BackendServiceCallback<List<T>> backendServiceCallback);
 
-
+    // 通过用户ID查询匹配用户
+    void findUsersById(String id, BackendServiceCallback<List<T>> backendServiceCallback);
 }

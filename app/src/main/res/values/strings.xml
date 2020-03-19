@@ -85,4 +85,15 @@
     <string name="menu_info_save_text">save</string>
     <string name="menu_info_save_success">successful</string>
 
+    <!-- new friend -->
+    <string name="text_user_add_friend">Add friends</string>
+    <string name="text_user_chat">chat</string>
+    <string name="text_user_audio_chat">audio chat</string>
+    <string name="text_user_video_chat">video chat</string>
+    <string name="text_user_resuest_succeed">request successful</string>
+    <string name="text_user_resuest_fail">request fail</string>
+
+    <string name="text_new_friend_agree">Has agreed to</string>
+    <string name="text_new_friend_no_agree">Has refused to</string>
+
 </resources>

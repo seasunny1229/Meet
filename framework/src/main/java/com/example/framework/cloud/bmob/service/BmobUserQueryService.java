@@ -30,6 +30,18 @@ public class BmobUserQueryService implements IUserQueryService<User> {
     public void findUsersByPhoneNumber(String phoneNumber, final BackendServiceCallback<List<User>> backendServiceCallback) {
         BmobQuery<IMBmobUser> query = new BmobQuery<>();
         query.addWhereEqualTo("mobilePhoneNumber", phoneNumber);
+        findUsers(query, backendServiceCallback);
+    }
+
+    @Override
+    public void findUsersById(String id, BackendServiceCallback<List<User>> backendServiceCallback) {
+        BmobQuery<IMBmobUser> query = new BmobQuery<>();
+        query.addWhereEqualTo("objectId", id);
+        findUsers(query, backendServiceCallback);
+    }
+
+
+    private void findUsers(BmobQuery<IMBmobUser> query, final BackendServiceCallback<List<User>> backendServiceCallback){
         query.findObjects(new FindListener<IMBmobUser>() {
             @Override
             public void done(final List<IMBmobUser> list, BmobException e) {
@@ -48,4 +60,5 @@ public class BmobUserQueryService implements IUserQueryService<User> {
             }
         });
     }
+
 }
