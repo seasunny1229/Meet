@@ -1,6 +1,7 @@
 package com.example.framework.cloud.application;
 
 import com.example.framework.backend.application.BackendServiceApplication;
+import com.example.framework.backend.service.INewFriendManagementService;
 import com.example.framework.backend.service.IUserConnectionService;
 import com.example.framework.backend.service.IUserInfoService;
 import com.example.framework.backend.service.IUserLoginService;
@@ -8,8 +9,11 @@ import com.example.framework.backend.service.IUserQueryService;
 import com.example.framework.cloud.bmob.service.BmobUserInfoService;
 import com.example.framework.cloud.bmob.service.BmobUserLoginService;
 import com.example.framework.cloud.bmob.service.BmobUserQueryService;
+import com.example.framework.cloud.litepal.LitePalNewFriendManagementService;
 import com.example.framework.cloud.rongcloud.service.RongCloudUserConnectionService;
 import com.example.framework.process.ProcessUtil;
+
+import org.litepal.LitePal;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobInstallation;
@@ -35,6 +39,8 @@ public abstract class IntegratedCloudServiceApplication extends BackendServiceAp
     protected void initBackendServiceModule() {
         initBmob();
         initRongCloud();
+        initLitePal();
+
     }
 
     @Override
@@ -51,6 +57,9 @@ public abstract class IntegratedCloudServiceApplication extends BackendServiceAp
         }
         else if(clazz == IUserConnectionService.class){
             return (T) RongCloudUserConnectionService.getInstance();
+        }
+        else if(clazz == INewFriendManagementService.class){
+            return (T) LitePalNewFriendManagementService.getInstance();
         }
 
         return null;
@@ -82,6 +91,10 @@ public abstract class IntegratedCloudServiceApplication extends BackendServiceAp
         // IMLib
         RongIMClient.init(this, getRongCloudAppKey());
 
+    }
+
+    private void initLitePal(){
+        LitePal.initialize(this);
     }
     // endregion
 
