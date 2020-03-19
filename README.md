@@ -8,11 +8,16 @@ Bmob<br>
 
 其他工具SDK<br>
 网络通信工具: Okhttp, Okio<br>
-异步线程通信: RxJava<br> 
-数据解析: Gson<br> 
 服务器素材获取: Glide<br>
+异步线程通信: RxJava<br> 
+事件发布: EventBus<br>
+数据解析: Gson<br> 
+数据本地化存储: litepal<br>
  
 安卓view<br> 
 3D Cloud<br>
 Circle Image View<br>
 Recycler View<br>
+
+安卓apk<br>
+multidex
