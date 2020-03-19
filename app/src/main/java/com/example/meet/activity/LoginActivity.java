@@ -8,7 +8,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -17,15 +16,13 @@ import com.example.framework.backend.bean.User;
 import com.example.framework.backend.callback.BackendServiceCallback;
 import com.example.framework.backend.exception.BackendServiceException;
 import com.example.framework.backend.service.IUserLoginService;
-import com.example.framework.cloud.bmob.bean.IMBmobUser;
 import com.example.framework.util.StringUtil;
 import com.example.framework.util.ToastUtil;
 import com.example.framework.view.controller.ImageVerificationDialogController;
 import com.example.framework.view.controller.LoadingDialogController;
 import com.example.framework.view.listener.OnViewResultListener;
-import com.example.meet.BuildConfig;
 import com.example.meet.R;
-import com.example.meet.persistent.SharedPreferenceConstant;
+import com.example.meet.persistent.preference.SharedPreferenceConstant;
 
 /**
  *

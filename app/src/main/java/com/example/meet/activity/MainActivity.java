@@ -21,7 +21,7 @@ import com.example.framework.exception.ExceptionHandler;
 import com.example.framework.util.LogUtil;
 import com.example.framework.view.custom.ModifiedDialog;
 import com.example.meet.R;
-import com.example.meet.persistent.SharedPreferenceConstant;
+import com.example.meet.persistent.preference.SharedPreferenceConstant;
 import com.example.meet.service.CloudService;
 
 import java.util.ArrayList;

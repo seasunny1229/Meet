@@ -17,7 +17,7 @@ import com.example.framework.backend.service.IUserLoginService;
 import com.example.framework.util.ToastUtil;
 import com.example.framework.view.controller.LoadingDialogController;
 import com.example.meet.R;
-import com.example.meet.persistent.SharedPreferenceConstant;
+import com.example.meet.persistent.preference.SharedPreferenceConstant;
 
 /**
  *

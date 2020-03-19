@@ -1,4 +1,4 @@
-package com.example.meet.persistent;
+package com.example.meet.persistent.preference;
 
 public class SharedPreferenceConstant {
 

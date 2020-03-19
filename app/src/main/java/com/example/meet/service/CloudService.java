@@ -14,7 +14,7 @@ import com.example.framework.backend.exception.BackendServiceException;
 import com.example.framework.backend.service.IUserConnectionService;
 import com.example.framework.exception.ExceptionHandler;
 import com.example.framework.util.ToastUtil;
-import com.example.meet.persistent.SharedPreferenceConstant;
+import com.example.meet.persistent.preference.SharedPreferenceConstant;
 
 public class CloudService extends Service {
 

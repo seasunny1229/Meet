@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 
 import com.example.framework.activity.BaseFullScreenStyleActivity;
 import com.example.framework.backend.service.IUserInfoService;
-import com.example.meet.persistent.SharedPreferenceConstant;
+import com.example.meet.persistent.preference.SharedPreferenceConstant;
 import com.example.meet.R;
 
 /**
