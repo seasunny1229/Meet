@@ -1,11 +1,13 @@
 package com.example.framework.cloud.application;
 
 import com.example.framework.backend.application.BackendServiceApplication;
+import com.example.framework.backend.service.IFriendManagementService;
 import com.example.framework.backend.service.INewFriendManagementService;
 import com.example.framework.backend.service.IUserConnectionService;
 import com.example.framework.backend.service.IUserInfoService;
 import com.example.framework.backend.service.IUserLoginService;
 import com.example.framework.backend.service.IUserQueryService;
+import com.example.framework.cloud.bmob.service.BmobFriendManagementService;
 import com.example.framework.cloud.bmob.service.BmobUserInfoService;
 import com.example.framework.cloud.bmob.service.BmobUserLoginService;
 import com.example.framework.cloud.bmob.service.BmobUserQueryService;
@@ -60,6 +62,9 @@ public abstract class IntegratedCloudServiceApplication extends BackendServiceAp
         }
         else if(clazz == INewFriendManagementService.class){
             return (T) LitePalNewFriendManagementService.getInstance();
+        }
+        else if(clazz == IFriendManagementService.class){
+            return (T) BmobFriendManagementService.getInstance();
         }
 
         return null;

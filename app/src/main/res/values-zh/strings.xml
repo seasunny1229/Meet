@@ -96,5 +96,11 @@
     <string name="text_new_friend_agree">已同意</string>
     <string name="text_new_friend_no_agree">已拒绝</string>
 
+    <!-- add new friend send message dialog -->
+    <string name="dialog_add_firend_title">添加联系人</string>
+    <string name="dialog_add_firend_msg">留言..</string>
+    <string name="dialog_add_firend_confirm">确定</string>
+    <string name="dialog_add_firend_add">添加</string>
+    <string name="dialog_add_firend_cancel">取消</string>
 
 </resources>

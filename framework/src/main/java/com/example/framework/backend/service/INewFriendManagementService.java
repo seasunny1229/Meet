@@ -4,6 +4,12 @@ import com.example.framework.backend.callback.BackendServiceCallback;
 
 import java.util.List;
 
+/**
+ *
+ * 维护新朋友列表数据
+ *
+ */
+
 public interface INewFriendManagementService {
 
     // 添加新朋友
