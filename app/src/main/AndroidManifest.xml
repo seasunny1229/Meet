@@ -87,6 +87,9 @@
         <!-- setting personal info -->
         <activity android:name=".activity.MeInfoActivity"></activity>
 
+        <!-- new friend info -->
+        <activity android:name=".activity.NewFriendActivity"></activity>
+
         <!-- cloud service -->
         <service android:name=".service.CloudService"/>
 

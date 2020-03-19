@@ -18,6 +18,7 @@ import com.example.framework.glide.GlideUtil;
 import com.example.framework.util.ToastUtil;
 import com.example.meet.R;
 import com.example.meet.activity.MeInfoActivity;
+import com.example.meet.activity.NewFriendActivity;
 import com.example.meet.eventbus.EventBusConstant;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -75,17 +76,29 @@ public class MeFragment extends BaseFragment {
 
     private void setFunctionalButtons(){
 
-        // 跳转设置用户个人信息
+        // 跳转设置用户个人信息页面
         mView.findViewById(R.id.ll_me_info).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 jumpToSettingUserInfo();
             }
         });
+
+        // 跳转到添加新朋友页面
+        mView.findViewById(R.id.ll_new_friend).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                jumpToNewFriendManagement();
+            }
+        });
     }
 
     private void jumpToSettingUserInfo(){
         startActivity(new Intent(getActivity(), MeInfoActivity.class));
+    }
+
+    private void jumpToNewFriendManagement(){
+        startActivity(new Intent(getActivity(), NewFriendActivity.class));
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
