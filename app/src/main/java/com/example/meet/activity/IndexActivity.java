@@ -12,6 +12,13 @@ import com.example.framework.backend.service.IUserInfoService;
 import com.example.meet.persistent.SharedPreferenceConstant;
 import com.example.meet.R;
 
+/**
+ *
+ * 启动APP后的索引页
+ *
+ *
+ */
+
 public class IndexActivity extends BaseFullScreenStyleActivity {
     private static final int HANDLER_MESSAGE_WHAT_NEXT_ACTIVITY = 1000;
     private static final int INDEX_PAGE_SHOWING_DURATION = 2000;

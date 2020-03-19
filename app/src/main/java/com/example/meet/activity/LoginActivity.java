@@ -27,6 +27,13 @@ import com.example.meet.BuildConfig;
 import com.example.meet.R;
 import com.example.meet.persistent.SharedPreferenceConstant;
 
+/**
+ *
+ * 通过手机号码和短信验证码注册和登录
+ *
+ *
+ */
+
 public class LoginActivity extends BaseFullScreenStyleActivity {
 
     // retry sms, unit second

@@ -35,6 +35,13 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ *
+ * 主页
+ *
+ *
+ */
+
 public class MainActivity extends BaseMainActivity {
 
     // tag index

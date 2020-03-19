@@ -20,6 +20,12 @@ import com.example.meet.R;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 第一次启动APP前导页
+ *
+ *
+ */
+
 public class GuideActivity extends BaseFullScreenStyleActivity {
 
     @Override

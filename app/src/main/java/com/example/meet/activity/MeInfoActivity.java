@@ -23,6 +23,13 @@ import com.example.framework.view.controller.LoadingDialogController;
 import com.example.meet.R;
 import com.example.meet.eventbus.EventBusConstant;
 
+/**
+ *
+ * 修改个人信息页面
+ *
+ *
+ */
+
 public class MeInfoActivity extends BaseCommonStyleActivity {
 
     @Override

@@ -19,6 +19,13 @@ import com.example.framework.view.controller.LoadingDialogController;
 import com.example.meet.R;
 import com.example.meet.persistent.SharedPreferenceConstant;
 
+/**
+ *
+ * 已经有账号和密码，通过账号和密码登录
+ *
+ *
+ */
+
 public class LoginByAccountActivity extends BaseCommonStyleActivity {
 
     @Override

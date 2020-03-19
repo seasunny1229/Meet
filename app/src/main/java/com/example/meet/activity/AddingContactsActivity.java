@@ -20,6 +20,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ *
+ * 导入手机通讯录朋友信息
+ *
+ *
+ */
+
 public class AddingContactsActivity extends BaseCommonStyleActivity {
 
     @Override

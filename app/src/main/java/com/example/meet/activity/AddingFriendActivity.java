@@ -30,6 +30,14 @@ import com.example.meet.view.addingfriend.AddingFriendTitleInfo;
 
 import java.util.List;
 
+
+/**
+ *
+ * 通过手机号码查找朋友
+ *
+ *
+ */
+
 public class AddingFriendActivity extends BaseCommonStyleActivity {
 
     @Override

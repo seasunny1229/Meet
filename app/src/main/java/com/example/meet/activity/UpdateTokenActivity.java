@@ -24,10 +24,9 @@ import com.example.framework.backend.bean.User;
 import com.example.framework.backend.callback.BackendServiceCallback;
 import com.example.framework.backend.exception.BackendServiceException;
 import com.example.framework.backend.service.IUserInfoService;
-import com.example.framework.cloud.bmob.bean.IMBmobUser;
 import com.example.framework.file.ApplicationFileNameManager;
-import com.example.framework.intent.CameraIntent;
 import com.example.framework.file.FileUtil;
+import com.example.framework.intent.CameraIntent;
 import com.example.framework.intent.PhotoIntent;
 import com.example.framework.provider.ContentProviderUtil;
 import com.example.framework.view.controller.LoadingDialogController;
@@ -37,6 +36,13 @@ import com.example.meet.R;
 import java.io.File;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+
+/**
+ *
+ * 第一次启动后，添加用户名和上传头像
+ *
+ *
+ */
 
 public class UpdateTokenActivity extends BaseFullScreenStyleActivity {
 
