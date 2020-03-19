@@ -15,7 +15,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.framework.application.BaseApplication;
 import com.example.framework.backend.application.IBackendService;
 import com.example.framework.backend.exception.BackendServiceException;
+import com.example.framework.eventbus.MessageEvent;
 import com.example.framework.persistent.BaseSharedPreferenceConstant;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;

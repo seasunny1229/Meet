@@ -67,7 +67,22 @@
     <string name="text_main_star_3">fate</string>
     <string name="text_main_star_4">love</string>
 
-    <!--2019.11.18 新增-->
+    <!-- personal info -->
+    <string name="text_me_info_name">The name</string>
+    <string name="text_me_info_sex">gender</string>
+    <string name="text_me_info_age">age</string>
+    <string name="text_me_info_desc">desc</string>
+    <string name="text_me_info_birthday">birthday</string>
+    <string name="text_me_info_constellation">constellation</string>
+    <string name="text_me_info_hobby">hobby</string>
+    <string name="text_me_info_status">status</string>
+    <string name="text_me_info_tips">Hello, this is </string>
+    <string name="text_me_info_boy">boy</string>
+    <string name="text_me_info_girl">girl</string>
 
+    <!-- menu -->
+    <string name="menu_input_text">publish</string>
+    <string name="menu_info_save_text">save</string>
+    <string name="menu_info_save_success">successful</string>
 
 </resources>

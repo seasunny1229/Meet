@@ -3,7 +3,6 @@ package com.example.framework.cloud.bmob.service;
 import com.example.framework.backend.bean.User;
 import com.example.framework.backend.callback.BackendServiceCallback;
 import com.example.framework.backend.exception.BackendServiceException;
-import com.example.framework.backend.marker.IUser;
 import com.example.framework.backend.service.IUserQueryService;
 import com.example.framework.cloud.bmob.bean.IMBmobUser;
 import com.example.framework.cloud.bmob.util.UserInfoUtil;
@@ -38,7 +37,7 @@ public class BmobUserQueryService implements IUserQueryService<User> {
                     List<User> users = new ArrayList<User>();
                     for(IMBmobUser imBmobUser : list){
                         User user = new User();
-                        UserInfoUtil.updateUserInfoFromBackendData(user, imBmobUser);
+                        UserInfoUtil.updateLocalUserInfoFromRemoteData(user, imBmobUser);
                         users.add(user);
                     }
                     backendServiceCallback.success(users);

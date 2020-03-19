@@ -12,6 +12,10 @@ import com.example.framework.view.custom.ModifiedDialog;
 
 public class LoadingDialogController extends DialogController{
 
+    public static LoadingDialogController getLoadingDialog(Context context){
+        return new LoadingDialogController(context);
+    }
+
     // animation
     private ObjectAnimator rotationAnimator;
 

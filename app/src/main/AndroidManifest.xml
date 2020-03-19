@@ -86,6 +86,9 @@
         <!-- adding contacts -->
         <activity android:name=".activity.AddingContactsActivity"></activity>
 
+        <!-- setting personal info -->
+        <activity android:name=".activity.MeInfoActivity"></activity>
+
         <!-- cloud service -->
         <service android:name=".service.CloudService"/>
 

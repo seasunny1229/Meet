@@ -67,6 +67,22 @@
     <string name="text_main_star_3">缘分</string>
     <string name="text_main_star_4">恋爱</string>
 
-    <!--2019.11.18 新增-->
+    <!-- personal info -->
+    <string name="text_me_info_name">姓名</string>
+    <string name="text_me_info_sex">性别</string>
+    <string name="text_me_info_age">年龄</string>
+    <string name="text_me_info_desc">签名</string>
+    <string name="text_me_info_birthday">生日</string>
+    <string name="text_me_info_constellation">星座</string>
+    <string name="text_me_info_hobby">爱好</string>
+    <string name="text_me_info_status">状态</string>
+    <string name="text_me_info_tips">"你好，我是"</string>
+    <string name="text_me_info_boy">男</string>
+    <string name="text_me_info_girl">女</string>
+
+    <!-- menu -->
+    <string name="menu_input_text">发表</string>
+    <string name="menu_info_save_text">保存</string>
+    <string name="menu_info_save_success">保存成功</string>
 
 </resources>

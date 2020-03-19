@@ -5,7 +5,7 @@ import com.example.framework.cloud.bmob.bean.IMBmobUser;
 
 public class UserInfoUtil {
 
-    public static void updateUserInfoFromBackendData(User user, IMBmobUser imBmobUser){
+    public static void updateLocalUserInfoFromRemoteData(User user, IMBmobUser imBmobUser){
 
         // unique ID
         user.setUid(imBmobUser.getObjectId());
@@ -26,6 +26,26 @@ public class UserInfoUtil {
         user.setDesc(imBmobUser.getDesc());
     };
 
+   public static void updateRemoteUserInfoFromLocalData(User user, IMBmobUser imBmobUser){
 
+       // 基本属性
+       imBmobUser.setNickName(user.getNickName());
+       imBmobUser.setPhoto(user.getPhoto());
+       imBmobUser.setMobilePhoneNumber(user.getMobilePhoneNumber());
+       imBmobUser.setEmail(user.getEmail());
+
+       // 其他属性
+       imBmobUser.setSex(user.isSex());
+       imBmobUser.setAge(user.getAge());
+       imBmobUser.setBirthday(user.getBirthday());
+       imBmobUser.setConstellation(user.getConstellation());
+       imBmobUser.setHobby(user.getHobby());
+       imBmobUser.setStatus(user.getStatus());
+       imBmobUser.setDesc(user.getDesc());
+
+
+
+
+   }
 
 }

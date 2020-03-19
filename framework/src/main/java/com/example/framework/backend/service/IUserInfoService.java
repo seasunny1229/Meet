@@ -29,4 +29,6 @@ public interface IUserInfoService<T extends IUser> {
     // 获取token
     void getUserToken(Context context, BackendServiceCallback<String> backendServiceCallback);
 
+    // 更新用户信息
+    void updateUserInfo(T t, BackendServiceCallback<T> backendServiceCallback);
 }

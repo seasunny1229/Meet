@@ -46,7 +46,7 @@ public class BmobUserInfoService implements IUserInfoService<User> {
     public User getUser() {
         IMBmobUser imBmobUser = BmobUser.getCurrentUser(IMBmobUser.class);
         User user = UserManager.getInstance().getUser();
-        UserInfoUtil.updateUserInfoFromBackendData(user, imBmobUser);
+        UserInfoUtil.updateLocalUserInfoFromRemoteData(user, imBmobUser);
         return user;
     }
 
@@ -124,5 +124,22 @@ public class BmobUserInfoService implements IUserInfoService<User> {
             CloudExceptionHandler.handleRongCloudServerException(e);
             backendServiceCallback.fail(ExceptionFactory.createNotNotifyUserBackendServiceException());
         }
+    }
+
+    @Override
+    public void updateUserInfo(User user, final BackendServiceCallback<User> backendServiceCallback) {
+        IMBmobUser imBmobUser = BmobUser.getCurrentUser(IMBmobUser.class);
+        UserInfoUtil.updateRemoteUserInfoFromLocalData(user, imBmobUser);
+        imBmobUser.update(new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if(e == null){
+                    backendServiceCallback.success(null);
+                }
+                else {
+                    backendServiceCallback.fail(ExceptionFactory.createNotifyUserBackendServiceException());
+                }
+            }
+        });
     }
 }
