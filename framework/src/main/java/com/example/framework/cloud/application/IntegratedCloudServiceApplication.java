@@ -2,6 +2,7 @@ package com.example.framework.cloud.application;
 
 import com.example.framework.backend.application.BackendServiceApplication;
 import com.example.framework.backend.service.IFriendManagementService;
+import com.example.framework.backend.service.IMessageService;
 import com.example.framework.backend.service.INewFriendManagementService;
 import com.example.framework.backend.service.IConnectionService;
 import com.example.framework.backend.service.IUserInfoService;
@@ -14,6 +15,7 @@ import com.example.framework.cloud.bmob.service.BmobUserLoginService;
 import com.example.framework.cloud.bmob.service.BmobUserQueryService;
 import com.example.framework.cloud.litepal.LitePalNewFriendManagementService;
 import com.example.framework.cloud.rongcloud.service.RongCloudConnectionService;
+import com.example.framework.cloud.rongcloud.service.RongCloudMessageService;
 
 import org.litepal.LitePal;
 
@@ -62,6 +64,9 @@ public abstract class IntegratedCloudServiceApplication extends BackendServiceAp
         }
         else if(clazz == IFriendManagementService.class){
             return (T) BmobFriendManagementService.getInstance();
+        }
+        else if(clazz == IMessageService.class){
+            return (T) RongCloudMessageService.getInstance();
         }
 
         return null;

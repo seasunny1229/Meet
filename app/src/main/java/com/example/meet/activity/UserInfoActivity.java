@@ -14,7 +14,9 @@ import com.example.framework.backend.bean.User;
 import com.example.framework.backend.callback.BackendServiceCallback;
 import com.example.framework.backend.exception.BackendServiceException;
 import com.example.framework.backend.manager.UserManager;
+import com.example.framework.backend.messaging.message.IMTextMessage;
 import com.example.framework.backend.service.IFriendManagementService;
+import com.example.framework.backend.service.IMessageService;
 import com.example.framework.backend.service.IUserQueryService;
 import com.example.framework.exception.ExceptionHandler;
 import com.example.framework.glide.GlideUtil;
@@ -159,7 +161,7 @@ public class UserInfoActivity extends BaseFullScreenStyleActivity {
         dialog.findViewById(R.id.tv_add_friend).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendAddingFriendMessage(((EditText)findViewById(R.id.et_msg)).getText().toString().trim());
+                sendAddingFriendMessage(((EditText)dialog.findViewById(R.id.et_msg)).getText().toString().trim());
                 dialog.hide();
             }
         });
@@ -167,7 +169,10 @@ public class UserInfoActivity extends BaseFullScreenStyleActivity {
     }
 
     private void sendAddingFriendMessage(String message){
-
+        IMessageService messageService = getBackendService(IMessageService.class);
+        String targetId = getIntent().getStringExtra(INTENT_EXTRA_FRIEND_USER_ID);
+        IMTextMessage imTextMessage = IMTextMessage.createPrivateTextMessage(targetId, message);
+        messageService.sendMessage(imTextMessage, null);
     }
 
     private void chat(){

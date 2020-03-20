@@ -33,6 +33,9 @@ public class BmobFriendManagementService implements IFriendManagementService {
                 if(e == null){
                     backendServiceCallback.success(!list.isEmpty());
                 }
+                else if(e.getErrorCode() == 101){
+                    backendServiceCallback.success(false);
+                }
                 else {
                     backendServiceCallback.fail(ExceptionFactory.createNotifyUserBackendServiceException());
                 }

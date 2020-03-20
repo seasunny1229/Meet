@@ -12,6 +12,7 @@ import com.example.framework.backend.application.BackendServiceApplication;
 import com.example.framework.backend.callback.BackendServiceCallback;
 import com.example.framework.backend.exception.BackendServiceException;
 import com.example.framework.backend.service.IConnectionService;
+import com.example.framework.backend.service.IMessageService;
 import com.example.framework.exception.ExceptionHandler;
 import com.example.framework.persistent.BaseSharedPreferenceConstant;
 import com.example.framework.util.ToastUtil;
@@ -55,6 +56,17 @@ public class BaseService extends Service {
     }
 
     private void setReceivingMessageListener(){
+        IMessageService messageService = ((BackendServiceApplication) getApplication()).getBackendService(IMessageService.class);
+        messageService.receiveMessage(new BackendServiceCallback<Object>() {
+            @Override
+            public void success(Object o) {
 
+            }
+
+            @Override
+            public void fail(BackendServiceException e) {
+
+            }
+        });
     }
 }
