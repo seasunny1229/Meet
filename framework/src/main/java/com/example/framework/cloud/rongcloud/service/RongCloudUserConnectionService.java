@@ -1,5 +1,6 @@
 package com.example.framework.cloud.rongcloud.service;
 
+import android.app.Application;
 import android.content.Context;
 
 import com.example.framework.R;
@@ -22,21 +23,24 @@ public class RongCloudUserConnectionService implements IUserConnectionService {
 
     private static RongCloudUserConnectionService sInstance;
 
-    public static RongCloudUserConnectionService getInstance(){
+    public static RongCloudUserConnectionService getInstance(IntegratedCloudServiceApplication context){
         if(sInstance == null){
             sInstance = new RongCloudUserConnectionService();
+            sInstance.context = context;
         }
         return sInstance;
     }
 
+    private IntegratedCloudServiceApplication context;
+
     @Override
-    public void getUserToken(Context context, BackendServiceCallback<String> backendServiceCallback){
+    public void getUserToken(BackendServiceCallback<String> backendServiceCallback){
         IMBmobUser imBmobUser = BmobUser.getCurrentUser(IMBmobUser.class);
         UserModel userModel = new UserModel()
                 .setId(imBmobUser.getObjectId())
                 .setName(imBmobUser.getTokenNickName())
                 .setPortrait(imBmobUser.getTokenPhoto());
-        RongCloud rongCloud = ((IntegratedCloudServiceApplication)context.getApplicationContext()).getRongCloud();
+        RongCloud rongCloud = context.getRongCloud();
         try {
             TokenResult result = rongCloud.user.register(userModel);
             if (result.getCode() == context.getResources().getInteger(R.integer.http_response_code_ok)) {

@@ -183,7 +183,7 @@ public class MainActivity extends BaseMainActivity {
             @Override
             public void subscribe(final ObservableEmitter<String> emitter) throws Exception {
                 IUserConnectionService userConnectionService = getBackendService(IUserConnectionService.class);
-                userConnectionService.getUserToken(MainActivity.this, new BackendServiceCallback<String>() {
+                userConnectionService.getUserToken( new BackendServiceCallback<String>() {
                     @Override
                     public void success(String s) {
                         emitter.onNext(s);

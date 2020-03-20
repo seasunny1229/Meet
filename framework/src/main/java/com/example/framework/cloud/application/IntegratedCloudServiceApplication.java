@@ -58,7 +58,7 @@ public abstract class IntegratedCloudServiceApplication extends BackendServiceAp
             return (T) BmobUserQueryService.getInstance();
         }
         else if(clazz == IUserConnectionService.class){
-            return (T) RongCloudUserConnectionService.getInstance();
+            return (T) RongCloudUserConnectionService.getInstance(this);
         }
         else if(clazz == INewFriendManagementService.class){
             return (T) LitePalNewFriendManagementService.getInstance();
