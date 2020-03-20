@@ -11,6 +11,7 @@ import com.example.framework.application.BaseApplication;
 import com.example.framework.backend.application.BackendServiceApplication;
 import com.example.framework.backend.callback.BackendServiceCallback;
 import com.example.framework.backend.exception.BackendServiceException;
+import com.example.framework.backend.messaging.message.IMMessage;
 import com.example.framework.backend.service.IConnectionService;
 import com.example.framework.backend.service.IMessageService;
 import com.example.framework.exception.ExceptionHandler;
@@ -31,8 +32,6 @@ public class BaseService extends Service {
         connectIMCloudServer();
         setReceivingMessageListener();
     }
-
-
 
     private void connectIMCloudServer(){
 
@@ -60,13 +59,17 @@ public class BaseService extends Service {
         messageService.receiveMessage(new BackendServiceCallback<Object>() {
             @Override
             public void success(Object o) {
-
+                parseMessageAndDispatch((IMMessage) o);
             }
 
             @Override
             public void fail(BackendServiceException e) {
-
+                ExceptionHandler.handleBackendServiceException(BaseService.this, e);
             }
         });
+    }
+
+    protected void parseMessageAndDispatch(IMMessage imMessage){
+
     }
 }

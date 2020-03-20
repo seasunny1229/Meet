@@ -1,6 +1,5 @@
 package com.example.framework.cloud.rongcloud.util;
 
-import com.example.framework.backend.manager.UserManager;
 import com.example.framework.backend.messaging.conversation.IMConversationType;
 import com.example.framework.backend.messaging.message.IMMessage;
 import com.example.framework.backend.messaging.message.IMTextMessage;
@@ -9,7 +8,7 @@ import io.rong.imlib.model.Conversation;
 import io.rong.imlib.model.Message;
 import io.rong.message.TextMessage;
 
-public class MessageUtil {
+public class RongCloudMessageConvertor {
 
     public static Message convertToRongCloudMessage(IMMessage imMessage){
 
@@ -28,9 +27,11 @@ public class MessageUtil {
 
     private static void createTextMessage(Message message, IMMessage imMessage){
         String messageContent = ((IMTextMessage)imMessage).getMessageContent();
-        message.setContent(TextMessage.obtain(messageContent));
+        String extra = imMessage.getExtra();
+        TextMessage textMessage = TextMessage.obtain(messageContent);
+        textMessage.setExtra(extra);
+        message.setContent(textMessage);
     }
-
 
     private static Conversation.ConversationType getConversationType(IMConversationType type){
         Conversation.ConversationType result = null;
@@ -42,6 +43,10 @@ public class MessageUtil {
                 break;
         }
         return result;
+    }
+
+    public static IMMessage convertToIMMessage(Message message){
+        return null;
     }
 
 }

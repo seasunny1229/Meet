@@ -4,7 +4,7 @@ import com.example.framework.backend.callback.BackendServiceCallback;
 import com.example.framework.backend.messaging.message.IMMessage;
 import com.example.framework.backend.service.IMessageService;
 import com.example.framework.cloud.Exception.CloudExceptionHandler;
-import com.example.framework.cloud.rongcloud.util.MessageUtil;
+import com.example.framework.cloud.rongcloud.util.RongCloudMessageConvertor;
 import com.example.framework.exception.ExceptionFactory;
 import com.example.framework.util.LogUtil;
 
@@ -26,7 +26,7 @@ public class RongCloudMessageService implements IMessageService {
 
     @Override
     public void sendMessage(IMMessage imMessage, final BackendServiceCallback<Object> backendServiceCallback) {
-        Message message = MessageUtil.convertToRongCloudMessage(imMessage);
+        Message message = RongCloudMessageConvertor.convertToRongCloudMessage(imMessage);
         RongIMClient.getInstance().sendMessage(message, null, null, new IRongCallback.ISendMessageCallback() {
             @Override
             public void onAttached(Message message) {
@@ -52,11 +52,12 @@ public class RongCloudMessageService implements IMessageService {
     }
 
     @Override
-    public void receiveMessage(BackendServiceCallback<Object> backendServiceCallback) {
+    public void receiveMessage(final BackendServiceCallback<Object> backendServiceCallback) {
         RongIMClient.setOnReceiveMessageListener(new RongIMClient.OnReceiveMessageListener() {
             @Override
             public boolean onReceived(Message message, int i) {
                 LogUtil.i("接收成功：" + message.getContent().toString());
+                backendServiceCallback.success(RongCloudMessageConvertor.convertToIMMessage(message));
                 return true;
             }
         });

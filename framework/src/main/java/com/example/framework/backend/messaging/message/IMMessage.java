@@ -13,6 +13,9 @@ public abstract class IMMessage {
     // target id
     protected String targetId;
 
+    // extra info
+    protected String extra;
+
     public IMMessageType getMessageType() {
         return messageType;
     }
@@ -23,5 +26,9 @@ public abstract class IMMessage {
 
     public String getTargetId() {
         return targetId;
+    }
+
+    public String getExtra() {
+        return extra;
     }
 }

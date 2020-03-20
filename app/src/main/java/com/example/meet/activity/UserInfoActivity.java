@@ -15,6 +15,7 @@ import com.example.framework.backend.callback.BackendServiceCallback;
 import com.example.framework.backend.exception.BackendServiceException;
 import com.example.framework.backend.manager.UserManager;
 import com.example.framework.backend.messaging.message.IMTextMessage;
+import com.example.framework.backend.messaging.message.MessageExtraConstant;
 import com.example.framework.backend.service.IFriendManagementService;
 import com.example.framework.backend.service.IMessageService;
 import com.example.framework.backend.service.IUserQueryService;
@@ -171,7 +172,7 @@ public class UserInfoActivity extends BaseFullScreenStyleActivity {
     private void sendAddingFriendMessage(String message){
         IMessageService messageService = getBackendService(IMessageService.class);
         String targetId = getIntent().getStringExtra(INTENT_EXTRA_FRIEND_USER_ID);
-        IMTextMessage imTextMessage = IMTextMessage.createPrivateTextMessage(targetId, message);
+        IMTextMessage imTextMessage = IMTextMessage.createPrivateTextMessage(targetId, message, MessageExtraConstant.ADD_FRIEND_REQUEST);
         messageService.sendMessage(imTextMessage, null);
     }
 
