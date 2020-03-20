@@ -16,6 +16,7 @@ import com.example.framework.activity.BaseMainActivity;
 import com.example.framework.backend.bean.User;
 import com.example.framework.backend.callback.BackendServiceCallback;
 import com.example.framework.backend.exception.BackendServiceException;
+import com.example.framework.backend.service.IUserConnectionService;
 import com.example.framework.backend.service.IUserInfoService;
 import com.example.framework.exception.ExceptionHandler;
 import com.example.framework.util.LogUtil;
@@ -181,8 +182,8 @@ public class MainActivity extends BaseMainActivity {
         Observable.create(new ObservableOnSubscribe<String>() {
             @Override
             public void subscribe(final ObservableEmitter<String> emitter) throws Exception {
-                IUserInfoService userInfoService = getBackendService(IUserInfoService.class);
-                userInfoService.getUserToken(MainActivity.this, new BackendServiceCallback<String>() {
+                IUserConnectionService userConnectionService = getBackendService(IUserConnectionService.class);
+                userConnectionService.getUserToken(MainActivity.this, new BackendServiceCallback<String>() {
                     @Override
                     public void success(String s) {
                         emitter.onNext(s);

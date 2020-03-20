@@ -103,28 +103,6 @@ public class BmobUserInfoService implements IUserInfoService<User> {
 
     }
 
-    @Override
-    public void getUserToken(Context context, BackendServiceCallback<String> backendServiceCallback){
-        IMBmobUser imBmobUser = BmobUser.getCurrentUser(IMBmobUser.class);
-        UserModel userModel = new UserModel()
-                .setId(imBmobUser.getObjectId())
-                .setName(imBmobUser.getTokenNickName())
-                .setPortrait(imBmobUser.getTokenPhoto());
-        RongCloud rongCloud = ((IntegratedCloudServiceApplication)context.getApplicationContext()).getRongCloud();
-        try {
-            TokenResult result = rongCloud.user.register(userModel);
-            if (result.getCode() == context.getResources().getInteger(R.integer.http_response_code_ok)) {
-                backendServiceCallback.success(result.getToken());
-            }
-            else if(result.getCode() == RongCloudResponseCode.NUM_USERS_MEET_UPPER_LIMIT){
-                CloudExceptionHandler.handlerRongCloudServerException(result);
-                backendServiceCallback.fail(ExceptionFactory.createNotNotifyUserBackendServiceException());
-            }
-        }catch (Exception e){
-            CloudExceptionHandler.handleRongCloudServerException(e);
-            backendServiceCallback.fail(ExceptionFactory.createNotNotifyUserBackendServiceException());
-        }
-    }
 
     @Override
     public void updateUserInfo(User user, final BackendServiceCallback<User> backendServiceCallback) {

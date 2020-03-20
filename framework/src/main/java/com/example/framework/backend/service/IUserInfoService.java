@@ -26,9 +26,6 @@ public interface IUserInfoService<T extends IUser> {
     // 更新昵称和上传头像
     void updateNicknameAndHeadPortrait(String nickName, File headPortraitFile, BackendServiceCallback<T> backendServiceCallback);
 
-    // 获取token
-    void getUserToken(Context context, BackendServiceCallback<String> backendServiceCallback);
-
     // 更新用户信息
     void updateUserInfo(T t, BackendServiceCallback<T> backendServiceCallback);
 }
