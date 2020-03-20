@@ -1,6 +1,6 @@
 package io.rong.util;
 
-public class RcloudServiceConstrants {
+public class RcloudServiceConstants {
     public static final int CHATROOM= 1;
     public static final int GROUP =2;
     public static final int MESSAGE = 3;
@@ -25,8 +25,8 @@ public class RcloudServiceConstrants {
     public static final int RCLOUD_CONNECT_TIMEOUT= 1050;//内部服务超时，内部服务响应超时。联系融云，协助排查
     public static final int RCLOUD_TESTUSERS_OUT = 2007;//测试用户数量超限，测试用户数量超限。请提供蛋申请
 
-
-
+    // modified by kyle cui
+    public static final int HTTP_OK = 200;
 
 
 

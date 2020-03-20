@@ -1,23 +1,19 @@
 package com.example.framework.cloud.rongcloud.service;
 
-import android.app.Application;
 import android.content.Context;
+import android.text.TextUtils;
 
-import com.example.framework.R;
 import com.example.framework.backend.callback.BackendServiceCallback;
 import com.example.framework.backend.exception.BackendServiceException;
+import com.example.framework.backend.manager.UserManager;
 import com.example.framework.backend.service.IUserConnectionService;
 import com.example.framework.cloud.Exception.CloudExceptionHandler;
 import com.example.framework.cloud.application.IntegratedCloudServiceApplication;
-import com.example.framework.cloud.bmob.bean.IMBmobUser;
-import com.example.framework.cloud.rongcloud.constant.RongCloudResponseCode;
+import com.example.framework.cloud.appserver.RongCloudAppServerManager;
 import com.example.framework.exception.ExceptionFactory;
+import com.example.framework.persistent.BaseSharedPreferenceConstant;
 
-import cn.bmob.v3.BmobUser;
-import io.rong.RongCloud;
 import io.rong.imlib.RongIMClient;
-import io.rong.models.response.TokenResult;
-import io.rong.models.user.UserModel;
 
 public class RongCloudUserConnectionService implements IUserConnectionService {
 
@@ -34,25 +30,36 @@ public class RongCloudUserConnectionService implements IUserConnectionService {
     private IntegratedCloudServiceApplication context;
 
     @Override
-    public void getUserToken(BackendServiceCallback<String> backendServiceCallback){
-        IMBmobUser imBmobUser = BmobUser.getCurrentUser(IMBmobUser.class);
-        UserModel userModel = new UserModel()
-                .setId(imBmobUser.getObjectId())
-                .setName(imBmobUser.getTokenNickName())
-                .setPortrait(imBmobUser.getTokenPhoto());
-        RongCloud rongCloud = context.getRongCloud();
-        try {
-            TokenResult result = rongCloud.user.register(userModel);
-            if (result.getCode() == context.getResources().getInteger(R.integer.http_response_code_ok)) {
-                backendServiceCallback.success(result.getToken());
-            }
-            else if(result.getCode() == RongCloudResponseCode.NUM_USERS_MEET_UPPER_LIMIT){
-                CloudExceptionHandler.handlerRongCloudServerException(result);
-                backendServiceCallback.fail(ExceptionFactory.createNotNotifyUserBackendServiceException());
-            }
-        }catch (Exception e){
-            CloudExceptionHandler.handleRongCloudServerException(e);
-            backendServiceCallback.fail(ExceptionFactory.createNotNotifyUserBackendServiceException());
+    public void getUserToken(final BackendServiceCallback<String> backendServiceCallback){
+
+        // get from local data
+        String localizedToken = context.getSharedPreferences(BaseSharedPreferenceConstant.DEFAULT_NAME, Context.MODE_PRIVATE).getString(BaseSharedPreferenceConstant.TOKEN,"");
+
+        // get from local
+        if(!TextUtils.isEmpty(localizedToken)){
+            backendServiceCallback.success(localizedToken);
+        }
+
+        // get from remote
+        else {
+            // params
+            String id = UserManager.getInstance().getUser().getUid();
+            String name = UserManager.getInstance().getUser().getNickName();
+            String photoUrl = UserManager.getInstance().getUser().getPhoto();
+
+            // app server
+            RongCloudAppServerManager.getInstance().getUserToken(id, name, photoUrl, new BackendServiceCallback<String>() {
+                @Override
+                public void success(String s) {
+                    context.getSharedPreferences(BaseSharedPreferenceConstant.DEFAULT_NAME, Context.MODE_PRIVATE).edit().putString(BaseSharedPreferenceConstant.TOKEN, s).apply();
+                    backendServiceCallback.success(s);
+                }
+
+                @Override
+                public void fail(BackendServiceException e) {
+                    backendServiceCallback.fail(e);
+                }
+            });
         }
     }
 

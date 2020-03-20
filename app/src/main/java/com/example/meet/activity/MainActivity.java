@@ -76,7 +76,7 @@ public class MainActivity extends BaseMainActivity {
         requestPermissions();
 
         // update token
-        updateTokenData();
+        StartIMCloudServer();
     }
 
     @Override
@@ -84,7 +84,7 @@ public class MainActivity extends BaseMainActivity {
 
         // update token
         if(requestCode == UPDATE_TOKEN_REQUEST_CODE && resultCode == Activity.RESULT_OK){
-            updateTokenData();
+            StartIMCloudServer();
         }
 
         super.onActivityResult(requestCode, resultCode, data);
@@ -144,26 +144,18 @@ public class MainActivity extends BaseMainActivity {
     // endregion
 
     // region user token
-    private void updateTokenData(){
-        if(hasLocalizedTokenData()){
+    private void StartIMCloudServer(){
 
-            // 启动融云服务
-            startCloudService();
+        // 定义过头像，个人昵称信息
+        if(hasSetTokenUsedPersonalData()){
+
+            // 得到token，启动IM云服务
+            getTokenDataAndStartIMCloudServer();
         }
-        else{
+        else {
 
-            // 已经自定义过token
-            if(hasRemoteTokenData()){
-
-                // 本地化
-                localizeTokenData();
-            }
-            else {
-
-                // show guide dialog
-                showGuideDialog();
-            }
-
+            // show guide dialog
+            showSettingTokenUsedDataGuideDialog();
         }
     }
 
@@ -174,7 +166,7 @@ public class MainActivity extends BaseMainActivity {
         return !TextUtils.isEmpty(token);
     }
 
-    private void localizeTokenData(){
+    private void getTokenDataAndStartIMCloudServer(){
 
         // 去融云服务器获取token，连接融云
         // 解析token
@@ -182,11 +174,12 @@ public class MainActivity extends BaseMainActivity {
         Observable.create(new ObservableOnSubscribe<String>() {
             @Override
             public void subscribe(final ObservableEmitter<String> emitter) throws Exception {
+
+                // 从服务器请求token
                 IUserConnectionService userConnectionService = getBackendService(IUserConnectionService.class);
                 userConnectionService.getUserToken( new BackendServiceCallback<String>() {
                     @Override
                     public void success(String s) {
-                        emitter.onNext(s);
                         emitter.onComplete();
                     }
 
@@ -208,7 +201,7 @@ public class MainActivity extends BaseMainActivity {
 
                     @Override
                     public void onNext(String s) {
-                        putString(SharedPreferenceConstant.TOKEN, s);
+
                     }
 
                     @Override
@@ -223,7 +216,7 @@ public class MainActivity extends BaseMainActivity {
                 });
     }
 
-    private boolean hasRemoteTokenData(){
+    private boolean hasSetTokenUsedPersonalData(){
 
         // 获取本地用户对象
         IUserInfoService userInfoService = getBackendService(IUserInfoService.class);
@@ -274,7 +267,7 @@ public class MainActivity extends BaseMainActivity {
     // endregion
 
     // region guide dialog
-    private void showGuideDialog(){
+    private void showSettingTokenUsedDataGuideDialog(){
         uploadTokenGuideDialog = ModifiedDialog.createDefaultDialog(this, R.layout.dialog_first_upload);
         uploadTokenGuideDialog.show();
         ImageView imageView = uploadTokenGuideDialog.findViewById(R.id.iv_go_upload);

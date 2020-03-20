@@ -1,18 +1,12 @@
 package com.example.framework.cloud.bmob.service;
 
-import android.content.Context;
-
-import com.example.framework.R;
 import com.example.framework.backend.bean.User;
 import com.example.framework.backend.callback.BackendServiceCallback;
 import com.example.framework.backend.exception.BackendServiceException;
 import com.example.framework.backend.manager.UserManager;
 import com.example.framework.backend.service.IUserInfoService;
-import com.example.framework.cloud.Exception.CloudExceptionHandler;
-import com.example.framework.cloud.application.IntegratedCloudServiceApplication;
 import com.example.framework.cloud.bmob.bean.IMBmobUser;
 import com.example.framework.cloud.bmob.util.UserInfoUtil;
-import com.example.framework.cloud.rongcloud.constant.RongCloudResponseCode;
 import com.example.framework.exception.ExceptionFactory;
 
 import java.io.File;
@@ -22,9 +16,6 @@ import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.UpdateListener;
 import cn.bmob.v3.listener.UploadFileListener;
-import io.rong.RongCloud;
-import io.rong.models.response.TokenResult;
-import io.rong.models.user.UserModel;
 
 public class BmobUserInfoService implements IUserInfoService<User> {
 

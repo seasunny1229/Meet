@@ -7,6 +7,7 @@ import com.example.framework.backend.service.IUserConnectionService;
 import com.example.framework.backend.service.IUserInfoService;
 import com.example.framework.backend.service.IUserLoginService;
 import com.example.framework.backend.service.IUserQueryService;
+import com.example.framework.cloud.appserver.RongCloudAppServerManager;
 import com.example.framework.cloud.bmob.service.BmobFriendManagementService;
 import com.example.framework.cloud.bmob.service.BmobUserInfoService;
 import com.example.framework.cloud.bmob.service.BmobUserLoginService;
@@ -33,8 +34,6 @@ import io.rong.imlib.RongIMClient;
 */
 
 public abstract class IntegratedCloudServiceApplication extends BackendServiceApplication {
-
-    private RongCloud rongCloud;
 
     // region service
     @Override
@@ -91,7 +90,7 @@ public abstract class IntegratedCloudServiceApplication extends BackendServiceAp
     private void initRongCloud(){
 
         // 融云 server
-        rongCloud = RongCloud.getInstance(getRongCloudAppKey(), getRongCloudAppSecret());
+        RongCloudAppServerManager.getInstance().init(getRongCloudAppKey(), getRongCloudAppSecret());
 
         // IMLib
         RongIMClient.init(this, getRongCloudAppKey());
@@ -113,13 +112,6 @@ public abstract class IntegratedCloudServiceApplication extends BackendServiceAp
     protected abstract String getRongCloudAppSecret();
     // endregion
 
-    // region getter and setter
-    public RongCloud getRongCloud() {
-        return rongCloud;
-    }
-
-
-    // endregion
 
 
 }

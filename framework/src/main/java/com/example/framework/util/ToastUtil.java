@@ -25,6 +25,7 @@ public class ToastUtil {
 
     public static void toastInDebugMode(Context context, String message){
         if(BuildConfig.DEBUG){
+            LogUtil.i(message);
             toast(context, message);
         }
     }
