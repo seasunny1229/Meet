@@ -6,7 +6,7 @@ import android.text.TextUtils;
 import com.example.framework.backend.callback.BackendServiceCallback;
 import com.example.framework.backend.exception.BackendServiceException;
 import com.example.framework.backend.manager.UserManager;
-import com.example.framework.backend.service.IUserConnectionService;
+import com.example.framework.backend.service.IConnectionService;
 import com.example.framework.cloud.Exception.CloudExceptionHandler;
 import com.example.framework.cloud.application.IntegratedCloudServiceApplication;
 import com.example.framework.cloud.appserver.RongCloudAppServerManager;
@@ -15,13 +15,13 @@ import com.example.framework.persistent.BaseSharedPreferenceConstant;
 
 import io.rong.imlib.RongIMClient;
 
-public class RongCloudUserConnectionService implements IUserConnectionService {
+public class RongCloudConnectionService implements IConnectionService {
 
-    private static RongCloudUserConnectionService sInstance;
+    private static RongCloudConnectionService sInstance;
 
-    public static RongCloudUserConnectionService getInstance(IntegratedCloudServiceApplication context){
+    public static RongCloudConnectionService getInstance(IntegratedCloudServiceApplication context){
         if(sInstance == null){
-            sInstance = new RongCloudUserConnectionService();
+            sInstance = new RongCloudConnectionService();
             sInstance.context = context;
         }
         return sInstance;

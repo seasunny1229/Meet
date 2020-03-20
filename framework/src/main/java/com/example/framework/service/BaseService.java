@@ -11,7 +11,7 @@ import com.example.framework.application.BaseApplication;
 import com.example.framework.backend.application.BackendServiceApplication;
 import com.example.framework.backend.callback.BackendServiceCallback;
 import com.example.framework.backend.exception.BackendServiceException;
-import com.example.framework.backend.service.IUserConnectionService;
+import com.example.framework.backend.service.IConnectionService;
 import com.example.framework.exception.ExceptionHandler;
 import com.example.framework.persistent.BaseSharedPreferenceConstant;
 import com.example.framework.util.ToastUtil;
@@ -28,6 +28,7 @@ public class BaseService extends Service {
     public void onCreate() {
         super.onCreate();
         connectIMCloudServer();
+        setReceivingMessageListener();
     }
 
 
@@ -39,7 +40,7 @@ public class BaseService extends Service {
         String token = sharedPreferences.getString(BaseSharedPreferenceConstant.TOKEN, "");
 
         // 连接IM服务器
-        IUserConnectionService userConnectionService = ((BackendServiceApplication) getApplication()).getBackendService(IUserConnectionService.class);
+        IConnectionService userConnectionService = ((BackendServiceApplication) getApplication()).getBackendService(IConnectionService.class);
         userConnectionService.connect(token, new BackendServiceCallback<String>() {
             @Override
             public void success(String s) {
@@ -53,5 +54,7 @@ public class BaseService extends Service {
         });
     }
 
+    private void setReceivingMessageListener(){
 
+    }
 }

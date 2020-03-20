@@ -2,7 +2,7 @@ package com.example.framework.backend.service;
 
 import com.example.framework.backend.callback.BackendServiceCallback;
 
-public interface IUserConnectionService {
+public interface IConnectionService {
 
     // 获取token（用户令牌）
     void getUserToken(BackendServiceCallback<String> backendServiceCallback);

@@ -3,7 +3,7 @@ package com.example.framework.cloud.application;
 import com.example.framework.backend.application.BackendServiceApplication;
 import com.example.framework.backend.service.IFriendManagementService;
 import com.example.framework.backend.service.INewFriendManagementService;
-import com.example.framework.backend.service.IUserConnectionService;
+import com.example.framework.backend.service.IConnectionService;
 import com.example.framework.backend.service.IUserInfoService;
 import com.example.framework.backend.service.IUserLoginService;
 import com.example.framework.backend.service.IUserQueryService;
@@ -13,8 +13,7 @@ import com.example.framework.cloud.bmob.service.BmobUserInfoService;
 import com.example.framework.cloud.bmob.service.BmobUserLoginService;
 import com.example.framework.cloud.bmob.service.BmobUserQueryService;
 import com.example.framework.cloud.litepal.LitePalNewFriendManagementService;
-import com.example.framework.cloud.rongcloud.service.RongCloudUserConnectionService;
-import com.example.framework.process.ProcessUtil;
+import com.example.framework.cloud.rongcloud.service.RongCloudConnectionService;
 
 import org.litepal.LitePal;
 
@@ -23,7 +22,6 @@ import cn.bmob.v3.BmobInstallation;
 import cn.bmob.v3.BmobInstallationManager;
 import cn.bmob.v3.InstallationListener;
 import cn.bmob.v3.exception.BmobException;
-import io.rong.RongCloud;
 import io.rong.imlib.RongIMClient;
 
 /**
@@ -56,8 +54,8 @@ public abstract class IntegratedCloudServiceApplication extends BackendServiceAp
         else if(clazz == IUserQueryService.class){
             return (T) BmobUserQueryService.getInstance();
         }
-        else if(clazz == IUserConnectionService.class){
-            return (T) RongCloudUserConnectionService.getInstance(this);
+        else if(clazz == IConnectionService.class){
+            return (T) RongCloudConnectionService.getInstance(this);
         }
         else if(clazz == INewFriendManagementService.class){
             return (T) LitePalNewFriendManagementService.getInstance();

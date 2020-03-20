@@ -16,7 +16,7 @@ import com.example.framework.activity.BaseMainActivity;
 import com.example.framework.backend.bean.User;
 import com.example.framework.backend.callback.BackendServiceCallback;
 import com.example.framework.backend.exception.BackendServiceException;
-import com.example.framework.backend.service.IUserConnectionService;
+import com.example.framework.backend.service.IConnectionService;
 import com.example.framework.backend.service.IUserInfoService;
 import com.example.framework.exception.ExceptionHandler;
 import com.example.framework.util.LogUtil;
@@ -176,7 +176,7 @@ public class MainActivity extends BaseMainActivity {
             public void subscribe(final ObservableEmitter<String> emitter) throws Exception {
 
                 // 从服务器请求token
-                IUserConnectionService userConnectionService = getBackendService(IUserConnectionService.class);
+                IConnectionService userConnectionService = getBackendService(IConnectionService.class);
                 userConnectionService.getUserToken( new BackendServiceCallback<String>() {
                     @Override
                     public void success(String s) {
