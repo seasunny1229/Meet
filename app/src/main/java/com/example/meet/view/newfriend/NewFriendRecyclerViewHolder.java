@@ -11,11 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.framework.backend.bean.User;
 import com.example.framework.backend.callback.BackendServiceCallback;
 import com.example.framework.backend.exception.BackendServiceException;
+import com.example.framework.backend.messaging.message.IMTextMessage;
+import com.example.framework.backend.service.IMessageService;
+import com.example.framework.backend.service.INewFriendManagementService;
 import com.example.framework.backend.service.IUserQueryService;
 import com.example.framework.exception.ExceptionHandler;
 import com.example.framework.glide.GlideUtil;
 import com.example.meet.R;
 import com.example.meet.activity.NewFriendActivity;
+import com.example.meet.handler.friend.AddingFriendAgreeHandler;
 import com.example.meet.persistent.litepal.bean.NewFriend;
 import com.example.meet.persistent.litepal.constant.LitePalConstant;
 
@@ -23,12 +27,15 @@ import java.util.List;
 
 public class NewFriendRecyclerViewHolder extends RecyclerView.ViewHolder {
 
+    private NewFriend newFriend;
+
     public NewFriendRecyclerViewHolder(@NonNull View itemView) {
         super(itemView);
     }
 
     // region layout
     void set(final NewFriend newFriend){
+        this.newFriend = newFriend;
 
         // context
         final NewFriendActivity activity = ((NewFriendActivity) itemView.getContext());
@@ -117,10 +124,54 @@ public class NewFriendRecyclerViewHolder extends RecyclerView.ViewHolder {
     // region click action
     private void agree(){
 
+        // context
+        final NewFriendActivity activity = ((NewFriendActivity) itemView.getContext());
+
+        // message service
+        IMessageService messageService = activity.getBackendService(IMessageService.class);
+        IMTextMessage imTextMessage = IMTextMessage.createPrivateTextMessage(newFriend.getUid(), "agree", AddingFriendAgreeHandler.class);
+        messageService.sendMessage(imTextMessage, new BackendServiceCallback<Object>() {
+            @Override
+            public void success(Object o) {
+
+            }
+
+            @Override
+            public void fail(BackendServiceException e) {
+                ExceptionHandler.handleBackendServiceException(activity, e);
+            }
+        });
+
+
+        // update new friend info in LitePal
+
+
+        // update UI by event bus
+
     }
 
     private void disagree(){
 
+        // context
+        final NewFriendActivity activity = ((NewFriendActivity) itemView.getContext());
+
+        // update new friend info in LitePal
+        newFriend.setStatus(LitePalConstant.NEW_FRIEND_STATUS_DISAGREE);
+        newFriend.setTime(System.currentTimeMillis());
+
+        // new friend service
+        INewFriendManagementService service = activity.getBackendService(INewFriendManagementService.class);
+        service.updateNewFriendStatus(newFriend, new BackendServiceCallback<NewFriend>() {
+            @Override
+            public void success(NewFriend newFriend) {
+                setTagDisagree();
+            }
+
+            @Override
+            public void fail(BackendServiceException e) {
+                ExceptionHandler.handleBackendServiceException(activity, e);
+            }
+        });
     }
 
     // endregion
