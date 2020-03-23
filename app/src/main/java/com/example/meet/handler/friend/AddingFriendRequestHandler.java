@@ -35,6 +35,8 @@ public class AddingFriendRequestHandler extends BaseIMMessageReceivingHandler {
 
                     // 添加新好友
                     addNewFriend(context, service, imMessage);
+
+                    // TODO: use event bus to update UI
                 }
             }
 
