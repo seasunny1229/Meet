@@ -17,7 +17,6 @@ public class NewFriend extends LitePalSupport {
     private long time;
 
     //状态
-    @Column(defaultValue = LitePalConstant.NEW_FRIEND_STATUS_DEFAULT_VALUE_TO_BE_CONFIRMED)
     private int status;
 
     public String getMessage() {
@@ -50,5 +49,15 @@ public class NewFriend extends LitePalSupport {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "NewFriend{" +
+                "message='" + message + '\'' +
+                ", uid='" + uid + '\'' +
+                ", time=" + time +
+                ", status=" + status +
+                '}';
     }
 }

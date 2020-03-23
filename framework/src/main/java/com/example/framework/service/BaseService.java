@@ -72,6 +72,6 @@ public class BaseService extends Service {
 
     protected void handleIMMessage(IMMessage imMessage){
         IMMessageReceivingHandler handler = imMessage.getMessageReceivingHandler();
-        handler.handleIMMessage(imMessage);
+        handler.handleIMMessage(getApplication(), imMessage);
     }
 }

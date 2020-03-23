@@ -1,8 +1,6 @@
 package com.example.framework.backend.messaging.handler.manager;
 
 import com.example.framework.backend.messaging.handler.base.BaseIMMessageReceivingHandler;
-import com.example.framework.backend.messaging.handler.friend.AddingFriendAgreeHandler;
-import com.example.framework.backend.messaging.handler.friend.AddingFriendRequestHandler;
 
 import java.util.HashMap;
 
@@ -16,9 +14,10 @@ public class MessageHandlerManager {
         return sInstance;
     }
 
-    private MessageHandlerManager(){
-        add(new AddingFriendRequestHandler());
-        add(new AddingFriendAgreeHandler());
+    public void init(BaseIMMessageReceivingHandler[] handlers){
+        for(BaseIMMessageReceivingHandler handler : handlers){
+            add(handler);
+        }
     }
 
     private HashMap<Class<? extends BaseIMMessageReceivingHandler>, BaseIMMessageReceivingHandler> handleMap = new HashMap<>();

@@ -14,7 +14,7 @@ import com.example.framework.backend.bean.User;
 import com.example.framework.backend.callback.BackendServiceCallback;
 import com.example.framework.backend.exception.BackendServiceException;
 import com.example.framework.backend.manager.UserManager;
-import com.example.framework.backend.messaging.handler.friend.AddingFriendRequestHandler;
+import com.example.meet.handler.friend.AddingFriendRequestHandler;
 import com.example.framework.backend.messaging.message.IMTextMessage;
 import com.example.framework.backend.service.IFriendManagementService;
 import com.example.framework.backend.service.IMessageService;
