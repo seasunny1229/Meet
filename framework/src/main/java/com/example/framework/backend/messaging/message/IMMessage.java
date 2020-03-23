@@ -1,34 +1,87 @@
 package com.example.framework.backend.messaging.message;
 
+
 import com.example.framework.backend.messaging.conversation.IMConversationType;
+import com.example.framework.backend.messaging.handler.base.BaseIMMessageReceivingHandler;
 
-public abstract class IMMessage {
+public class IMMessage {
 
-    // conversation type
-    protected IMConversationType conversationType;
 
-    // message type
-    protected IMMessageType messageType;
+    // source id
+    private String sourceId;
 
     // target id
-    protected String targetId;
+    private String targetId;
+
+    // handler
+    private BaseIMMessageReceivingHandler messageReceivingHandler;
+
+    // conversation type
+    private IMConversationType imConversationType = IMConversationType.PRIVATE;
+
+    // message type
+    private IMMessageType imMessageType;
 
     // extra info
-    protected String extra;
+    private String extra;
 
-    public IMMessageType getMessageType() {
-        return messageType;
+    public String getSourceId() {
+        return sourceId;
     }
 
-    public IMConversationType getConversationType() {
-        return conversationType;
+    public void setSourceId(String sourceId) {
+        this.sourceId = sourceId;
     }
 
     public String getTargetId() {
         return targetId;
     }
 
+    public void setTargetId(String targetId) {
+        this.targetId = targetId;
+    }
+
+    public BaseIMMessageReceivingHandler getMessageReceivingHandler() {
+        return messageReceivingHandler;
+    }
+
+    public void setMessageReceivingHandler(BaseIMMessageReceivingHandler messageReceivingHandler) {
+        this.messageReceivingHandler = messageReceivingHandler;
+    }
+
+    public IMConversationType getImConversationType() {
+        return imConversationType;
+    }
+
+    public void setImConversationType(IMConversationType imConversationType) {
+        this.imConversationType = imConversationType;
+    }
+
+    public IMMessageType getImMessageType() {
+        return imMessageType;
+    }
+
+    public void setImMessageType(IMMessageType imMessageType) {
+        this.imMessageType = imMessageType;
+    }
+
     public String getExtra() {
         return extra;
+    }
+
+    public void setExtra(String extra) {
+        this.extra = extra;
+    }
+
+    @Override
+    public String toString() {
+        return "IMMessage{" +
+                "sourceId='" + sourceId + '\'' +
+                ", targetId='" + targetId + '\'' +
+                ", messageReceivingHandler=" + messageReceivingHandler +
+                ", imConversationType=" + imConversationType +
+                ", imMessageType=" + imMessageType +
+                ", extra='" + extra + '\'' +
+                '}';
     }
 }

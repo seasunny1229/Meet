@@ -11,6 +11,7 @@ import com.example.framework.application.BaseApplication;
 import com.example.framework.backend.application.BackendServiceApplication;
 import com.example.framework.backend.callback.BackendServiceCallback;
 import com.example.framework.backend.exception.BackendServiceException;
+import com.example.framework.backend.messaging.handler.base.IMMessageReceivingHandler;
 import com.example.framework.backend.messaging.message.IMMessage;
 import com.example.framework.backend.service.IConnectionService;
 import com.example.framework.backend.service.IMessageService;
@@ -59,7 +60,7 @@ public class BaseService extends Service {
         messageService.receiveMessage(new BackendServiceCallback<Object>() {
             @Override
             public void success(Object o) {
-                parseMessageAndDispatch((IMMessage) o);
+                handleIMMessage((IMMessage) o);
             }
 
             @Override
@@ -69,7 +70,8 @@ public class BaseService extends Service {
         });
     }
 
-    protected void parseMessageAndDispatch(IMMessage imMessage){
-
+    protected void handleIMMessage(IMMessage imMessage){
+        IMMessageReceivingHandler handler = imMessage.getMessageReceivingHandler();
+        handler.handleIMMessage(imMessage);
     }
 }
