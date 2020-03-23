@@ -52,6 +52,7 @@ public class NewFriendActivity extends BaseFullScreenStyleActivity {
         // init view
         initView();
 
+
         // show new friend data
         updateNewFriendList();
     }
