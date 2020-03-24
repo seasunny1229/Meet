@@ -4,6 +4,7 @@
 
     <application>
 
+        <!-- 融云推送通知 -->
         <receiver
             android:name="com.example.framework.cloud.rongcloud.receiver.SealNotificationReceiver"
             android:exported="false">
