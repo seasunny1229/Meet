@@ -103,4 +103,9 @@
     <string name="dialog_add_firend_add">add</string>
     <string name="dialog_add_firend_cancel">Cancel</string>
 
+    <!-- chat tab -->
+    <string name="text_chat_tab_title_1">Chat history</string>
+    <string name="text_chat_tab_title_2">Call records</string>
+    <string name="text_chat_tab_title_3">All friends</string>
+
 </resources>

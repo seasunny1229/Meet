@@ -103,4 +103,9 @@
     <string name="dialog_add_firend_add">添加</string>
     <string name="dialog_add_firend_cancel">取消</string>
 
+    <!-- chat tab -->
+    <string name="text_chat_tab_title_1">聊天记录</string>
+    <string name="text_chat_tab_title_2">通话记录</string>
+    <string name="text_chat_tab_title_3">全部好友</string>
+
 </resources>
