@@ -11,5 +11,6 @@ public class AddingFriendAgreeHandler extends BaseIMMessageReceivingHandler {
     @Override
     public void handleIMMessage(Context context, IMMessage imMessage) {
 
+
     }
 }

@@ -17,6 +17,7 @@ import com.example.framework.backend.service.INewFriendManagementService;
 import com.example.framework.backend.service.IUserQueryService;
 import com.example.framework.exception.ExceptionHandler;
 import com.example.framework.glide.GlideUtil;
+import com.example.framework.util.ToastUtil;
 import com.example.meet.R;
 import com.example.meet.activity.NewFriendActivity;
 import com.example.meet.handler.friend.AddingFriendAgreeHandler;
@@ -133,7 +134,7 @@ public class NewFriendRecyclerViewHolder extends RecyclerView.ViewHolder {
         messageService.sendMessage(imTextMessage, new BackendServiceCallback<Object>() {
             @Override
             public void success(Object o) {
-
+                ToastUtil.toastInDebugMode(activity, "已通知对方同意添加对方好友");
             }
 
             @Override
