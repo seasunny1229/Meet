@@ -14,5 +14,6 @@ public interface IFriendManagementService {
 
     void isFriend(String meId, String friendId, BackendServiceCallback<Boolean> backendServiceCallback);
 
+    void addFriend(String meId, String friendId, BackendServiceCallback<Void> backendServiceCallback);
 
 }

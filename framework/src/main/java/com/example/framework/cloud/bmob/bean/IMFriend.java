@@ -11,6 +11,9 @@ public class IMFriend extends BmobObject {
     // 星标朋友，黑名单等
     private String status;
 
+    public IMFriend() {
+    }
+
     public IMFriend(String me, String friend) {
         this.me = me;
         this.friend = friend;

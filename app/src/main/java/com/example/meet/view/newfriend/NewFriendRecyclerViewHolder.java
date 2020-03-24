@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.framework.backend.bean.User;
 import com.example.framework.backend.callback.BackendServiceCallback;
 import com.example.framework.backend.exception.BackendServiceException;
+import com.example.framework.backend.manager.UserManager;
 import com.example.framework.backend.messaging.message.IMTextMessage;
+import com.example.framework.backend.service.IFriendManagementService;
 import com.example.framework.backend.service.IMessageService;
 import com.example.framework.backend.service.INewFriendManagementService;
 import com.example.framework.backend.service.IUserQueryService;
@@ -128,13 +130,27 @@ public class NewFriendRecyclerViewHolder extends RecyclerView.ViewHolder {
         // context
         final NewFriendActivity activity = ((NewFriendActivity) itemView.getContext());
 
-        // message service
+        // message service to notify friend
         IMessageService messageService = activity.getBackendService(IMessageService.class);
         IMTextMessage imTextMessage = IMTextMessage.createPrivateTextMessage(newFriend.getUid(), "agree", AddingFriendAgreeHandler.class);
         messageService.sendMessage(imTextMessage, new BackendServiceCallback<Object>() {
             @Override
             public void success(Object o) {
                 ToastUtil.toastInDebugMode(activity, "已通知对方同意添加对方好友");
+            }
+
+            @Override
+            public void fail(BackendServiceException e) {
+                ExceptionHandler.handleBackendServiceException(activity, e);
+            }
+        });
+
+        // update remote friend list
+        IFriendManagementService friendManagementService = activity.getBackendService(IFriendManagementService.class);
+        friendManagementService.addFriend(UserManager.getInstance().getUser().getUid(), newFriend.getUid(), new BackendServiceCallback<Void>() {
+            @Override
+            public void success(Void aVoid) {
+                ToastUtil.toastInDebugMode(activity, "成功添加好友");
             }
 
             @Override
