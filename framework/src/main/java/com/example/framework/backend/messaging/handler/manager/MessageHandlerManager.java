@@ -32,7 +32,7 @@ public class MessageHandlerManager {
 
     public BaseIMMessageReceivingHandler get(Class<? extends BaseIMMessageReceivingHandler> clazz){
         if(!handleMap.containsKey(clazz)){
-            throw new IllegalArgumentException("cannot find handler object");
+            return null;
         }
         return handleMap.get(clazz);
     }

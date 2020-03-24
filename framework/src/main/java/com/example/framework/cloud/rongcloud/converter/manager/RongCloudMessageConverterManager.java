@@ -67,10 +67,12 @@ public class RongCloudMessageConverterManager extends IMInfoConverterManager<Mes
         IMConversationType imConversationType = Enum.valueOf(IMConversationType.class, extraInfo.getConversationTypeName());
         IMMessageType imMessageType = Enum.valueOf(IMMessageType.class, extraInfo.getMessageTypeName());
         Class clazz = null;
-        try {
-             clazz = Class.forName(extraInfo.getHandlerClassName());
-        }catch (ClassNotFoundException e){
-            e.printStackTrace();
+        if(extraInfo.getHandlerClassName() != null) {
+            try {
+                clazz = Class.forName(extraInfo.getHandlerClassName());
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         }
 
         // conversation
@@ -81,7 +83,12 @@ public class RongCloudMessageConverterManager extends IMInfoConverterManager<Mes
 
 
         // target id
-        imMessage.setTargetId(UserManager.getInstance().getUser().getUid());
+        if(message.getSenderUserId().equals(UserManager.getInstance().getUser().getUid())){
+            imMessage.setTargetId(message.getTargetId());
+        }
+        else {
+            imMessage.setTargetId(UserManager.getInstance().getUser().getUid());
+        }
 
 
         // source id
@@ -89,6 +96,10 @@ public class RongCloudMessageConverterManager extends IMInfoConverterManager<Mes
 
         // handler
         imMessage.setMessageReceivingHandler(MessageHandlerManager.getInstance().get(clazz));
+    }
+
+    public boolean hasExtraInfoConverter(Class<?> clazz){
+        return extraInfoConverterMap.containsKey(clazz);
     }
 
     private void addExtraInfoConverter(Class<?> clazz, IExtraInfoConverter converter){
@@ -99,7 +110,7 @@ public class RongCloudMessageConverterManager extends IMInfoConverterManager<Mes
         extraInfoConverterMap.put(clazz, converter);
     }
 
-    private IExtraInfoConverter getExtraInfoConverter(Class<?> clazz){
+    public IExtraInfoConverter getExtraInfoConverter(Class<?> clazz){
         if(!extraInfoConverterMap.containsKey(clazz)){
             throw new IllegalArgumentException("cannot find key in the extra info converter map");
         }
