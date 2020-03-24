@@ -1,5 +1,6 @@
 package com.example.meet.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -42,6 +43,8 @@ public class UserInfoActivity extends BaseFullScreenStyleActivity {
 
     public static final String INTENT_EXTRA_FRIEND_USER_ID = "friend_user_id";
 
+    private User user;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +78,7 @@ public class UserInfoActivity extends BaseFullScreenStyleActivity {
         useQueryService.findUsersById(userId, new BackendServiceCallback<List<User>>() {
             @Override
             public void success(List<User> users) {
-                updateUserInfo(users.get(0));
+                updateUserInfo(user = users.get(0));
                 configButtons(isFriend);
             }
 
@@ -177,7 +180,11 @@ public class UserInfoActivity extends BaseFullScreenStyleActivity {
     }
 
     private void chat(){
-
+        Intent intent = new Intent(this, ChatActivity.class);
+        intent.putExtra(ChatActivity.INTENT_EXTRA_FRIEND_USER_ID, user.getUid());
+        intent.putExtra(ChatActivity.INTENT_EXTRA_FRIEND_USER_NAME, user.getNickName());
+        intent.putExtra(ChatActivity.INTENT_EXTRA_FRIEND_USER_PHOTO, user.getPhoto());
+        startActivity(intent);
     }
 
     private void audioChat(){

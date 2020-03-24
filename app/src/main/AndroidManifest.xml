@@ -93,6 +93,9 @@
         <!-- friend info -->
         <activity android:name=".activity.UserInfoActivity"></activity>
 
+        <!-- chat -->
+        <activity android:name=".activity.ChatActivity"></activity>
+
         <!-- cloud service -->
         <service android:name=".service.CloudService"/>
 
