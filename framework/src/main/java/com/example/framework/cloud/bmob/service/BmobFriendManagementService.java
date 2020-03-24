@@ -1,5 +1,6 @@
 package com.example.framework.cloud.bmob.service;
 
+import com.example.framework.backend.bean.Friend;
 import com.example.framework.backend.callback.BackendServiceCallback;
 import com.example.framework.backend.exception.BackendServiceException;
 import com.example.framework.backend.service.IFriendManagementService;
@@ -7,6 +8,7 @@ import com.example.framework.cloud.Exception.BmobExceptionHandler;
 import com.example.framework.cloud.bmob.bean.IMFriend;
 import com.example.framework.exception.ExceptionFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
@@ -76,6 +78,31 @@ public class BmobFriendManagementService implements IFriendManagementService {
             public void fail(BackendServiceException e) {
                 BmobExceptionHandler.handleBmobException(e);
                 backendServiceCallback.fail(ExceptionFactory.createNotifyUserBackendServiceException(e));
+            }
+        });
+    }
+
+
+    @Override
+    public void getAllFriends(String meId, final BackendServiceCallback<List<Friend>> backendServiceCallback) {
+        BmobQuery<IMFriend> query = new BmobQuery<>();
+        query.addWhereEqualTo("me", meId);
+        query.findObjects(new FindListener<IMFriend>() {
+            @Override
+            public void done(List<IMFriend> list, BmobException e) {
+                if(e == null){
+                    List<Friend> friends = new ArrayList<>();
+                    if(list != null){
+                        for(IMFriend imFriend : list){
+                            friends.add(new Friend(imFriend.getFriend()));
+                        }
+                    }
+                    backendServiceCallback.success(friends);
+                }
+                else {
+                    BmobExceptionHandler.handleBmobException(e);
+                    backendServiceCallback.fail(ExceptionFactory.createNotifyUserBackendServiceException(e));
+                }
             }
         });
     }
