@@ -88,7 +88,7 @@ public class ChatActivity extends BaseCommonStyleActivity {
                         time = imMessage.getReceivedTime();
                     }
                 }
-                recyclerView.scrollToPosition(imMessages.size() - 1);
+                recyclerView.scrollToPosition(recyclerViewAdapter.size() - 1);
                 recyclerViewAdapter.notifyDataSetChanged();
             }
 

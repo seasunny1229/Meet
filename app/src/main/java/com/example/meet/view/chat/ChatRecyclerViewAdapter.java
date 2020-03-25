@@ -80,6 +80,10 @@ public class ChatRecyclerViewAdapter  extends RecyclerView.Adapter<BaseChatRecyc
         imMessages.clear();
     }
 
+    public int size(){
+        return imMessages.size();
+    }
+
     public void add(IMMessage imMessage){
         imMessages.add(imMessage);
     }
