@@ -93,8 +93,8 @@
     <string name="text_user_resuest_succeed">request successful</string>
     <string name="text_user_resuest_fail">request fail</string>
 
-    <string name="text_new_friend_agree">Has agreed to</string>
-    <string name="text_new_friend_no_agree">Has refused to</string>
+    <string name="text_new_friend_agree">Agreed</string>
+    <string name="text_new_friend_no_agree">Refused</string>
 
     <!-- add new friend send message dialog -->
     <string name="dialog_add_firend_title">Add contacts</string>

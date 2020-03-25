@@ -112,14 +112,12 @@ public class NewFriendRecyclerViewHolder extends RecyclerView.ViewHolder {
     private void setTagAgree(){
         itemView.findViewById(R.id.ll_agree).setVisibility(View.GONE);
         itemView.findViewById(R.id.tv_result).setVisibility(View.VISIBLE);
-        itemView.findViewById(R.id.tv_result).setBackgroundResource(R.drawable.img_tag_yes_bg);
         ((TextView)itemView.findViewById(R.id.tv_result)).setText(R.string.text_new_friend_agree);
     }
 
     private void setTagDisagree(){
         itemView.findViewById(R.id.ll_agree).setVisibility(View.GONE);
         itemView.findViewById(R.id.tv_result).setVisibility(View.VISIBLE);
-        itemView.findViewById(R.id.tv_result).setBackgroundResource(R.drawable.img_tag_no_bg);
         ((TextView)itemView.findViewById(R.id.tv_result)).setText(R.string.text_new_friend_no_agree);
     }
     // endregion
@@ -161,10 +159,20 @@ public class NewFriendRecyclerViewHolder extends RecyclerView.ViewHolder {
 
 
         // update new friend info in LitePal
+        newFriend.setStatus(LitePalConstant.NEW_FRIEND_STATUS_AGREE);
+        newFriend.setTime(System.currentTimeMillis());
+        INewFriendManagementService service = activity.getBackendService(INewFriendManagementService.class);
+        service.updateNewFriendStatus(newFriend, new BackendServiceCallback<NewFriend>() {
+            @Override
+            public void success(NewFriend newFriend) {
+                setTagAgree();
+            }
 
-
-        // update UI by event bus
-
+            @Override
+            public void fail(BackendServiceException e) {
+                ExceptionHandler.handleBackendServiceException(activity, e);
+            }
+        });
     }
 
     private void disagree(){
