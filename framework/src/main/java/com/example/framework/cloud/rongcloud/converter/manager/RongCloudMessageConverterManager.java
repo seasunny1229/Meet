@@ -94,7 +94,7 @@ public class RongCloudMessageConverterManager extends IMInfoConverterManager<Mes
         imMessage.setSourceId(message.getSenderUserId());
 
         // handler
-        imMessage.setMessageReceivingHandler(MessageHandlerManager.getInstance().get(clazz));
+        imMessage.setMessageReceivingHandler(MessageHandlerManager.getInstance().getHandler(clazz));
 
         // received time
         imMessage.setReceivedTime(message.getReceivedTime());

@@ -12,7 +12,7 @@ public class IMTextMessage extends IMMessage {
         imTextMessage.messageContent = messageContent;
         imTextMessage.setTargetId(targetId);
         imTextMessage.setImMessageType(IMMessageType.TEXT);
-        imTextMessage.setMessageReceivingHandler(MessageHandlerManager.getInstance().get(clazz));
+        imTextMessage.setMessageReceivingHandler(MessageHandlerManager.getInstance().getHandler(clazz));
         return imTextMessage;
     }
 

@@ -3,6 +3,7 @@ package com.example.meet.application;
 import com.example.framework.backend.messaging.handler.base.BaseIMMessageReceivingHandler;
 import com.example.framework.backend.messaging.handler.manager.MessageHandlerManager;
 import com.example.framework.cloud.application.IntegratedCloudServiceApplication;
+import com.example.framework.cloud.rongcloud.converter.filter.IMMessageReceiveHandlerFilter;
 import com.example.meet.BuildConfig;
 import com.example.meet.backend.BackendServiceConfig;
 import com.example.meet.handler.chat.ChatHandler;
@@ -42,5 +43,6 @@ public class MainApplication extends IntegratedCloudServiceApplication {
                 new AddingFriendAgreeHandler(),
                 new ChatHandler()
         });
+        MessageHandlerManager.getInstance().addHandlerFilter(MessageHandlerManager.MessageHandlerFilterType.chat, new IMMessageReceiveHandlerFilter(ChatHandler.class));
     }
 }
