@@ -123,4 +123,24 @@ public class RongCloudMessageService implements IMessageService {
             }
         });
     }
+
+    @Override
+    public void clearLocalPrivateUnreadMessages(String targetId, final BackendServiceCallback<Boolean> backendServiceCallback) {
+        RongIMClient.getInstance().clearMessagesUnreadStatus(Conversation.ConversationType.PRIVATE, targetId, new RongIMClient.ResultCallback<Boolean>() {
+            @Override
+            public void onSuccess(Boolean aBoolean) {
+                if(backendServiceCallback != null){
+                    backendServiceCallback.success(aBoolean);
+                }
+            }
+
+            @Override
+            public void onError(RongIMClient.ErrorCode errorCode) {
+                CloudExceptionHandler.handleRongIMClientException(errorCode);
+                if(backendServiceCallback != null){
+                    backendServiceCallback.fail(ExceptionFactory.createNotNotifyUserBackendServiceException());
+                }
+            }
+        });
+    }
 }

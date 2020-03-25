@@ -16,4 +16,6 @@ public interface IMessageService {
     // 得到本地历史消息
     void getLocalPrivateHistoryMessages(String targetId, BackendServiceCallback<List<IMMessage>> backendServiceCallback);
 
+    // 清理所有未读消息
+    void clearLocalPrivateUnreadMessages(String targetId, BackendServiceCallback<Boolean> backendServiceCallback);
 }

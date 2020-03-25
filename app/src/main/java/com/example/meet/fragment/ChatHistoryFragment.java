@@ -81,7 +81,7 @@ public class ChatHistoryFragment extends BaseFragment {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(MessageEvent messageEvent){
-        if(messageEvent.getType() == EventBusConstant.UPDATE_CHAT_INFO){
+        if(messageEvent.getType() == EventBusConstant.UPDATE_CHAT_INFO || messageEvent.getType() == EventBusConstant.CLEAR_UNREAD_MESSAGES){
             updateConversationData();
         }
     }

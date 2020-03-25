@@ -112,7 +112,7 @@ public class ChatActivity extends BaseCommonStyleActivity {
     }
 
     private void updateHistoryMessageData(){
-        IMessageService messageService = getBackendService(IMessageService.class);
+        final IMessageService messageService = getBackendService(IMessageService.class);
         messageService.getLocalPrivateHistoryMessages(friendId, new BackendServiceCallback<List<IMMessage>>() {
             @Override
             public void success(List<IMMessage> imMessages) {
@@ -141,6 +141,10 @@ public class ChatActivity extends BaseCommonStyleActivity {
                     recyclerViewAdapter.add(imMessage);
                 }
                 recyclerViewAdapter.notifyDataSetChanged();
+
+                // clear unread status
+                messageService.clearLocalPrivateUnreadMessages(friendId, null);
+                EventBusUtil.post(new MessageEvent(EventBusConstant.CLEAR_UNREAD_MESSAGES));
             }
 
             @Override
@@ -175,7 +179,7 @@ public class ChatActivity extends BaseCommonStyleActivity {
         });
 
         // update local activity
-        addIMMessageOnUI(imTextMessage);
+        EventBusUtil.post(new MessageEvent(EventBusConstant.UPDATE_CHAT_INFO, imTextMessage));
 
         // clear edit text
         editText.getText().clear();
