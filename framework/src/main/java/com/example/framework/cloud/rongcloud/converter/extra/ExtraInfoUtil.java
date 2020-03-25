@@ -21,8 +21,16 @@ public class ExtraInfoUtil {
 
     // abstract conversation type info and convert to IM conversation type
     public static IMConversationType convertToIMConversationType(Message message){
+        return convertToIMConversationType(message.getConversationType());
+    }
+
+    public static IMConversationType convertToIMConversationType(Conversation conversation){
+        return convertToIMConversationType(conversation.getConversationType());
+    }
+
+    private static IMConversationType convertToIMConversationType(Conversation.ConversationType conversationType){
         IMConversationType imConversationType = null;
-        if(message.getConversationType().equals(Conversation.ConversationType.PRIVATE)){
+        if(conversationType.equals(Conversation.ConversationType.PRIVATE)){
             imConversationType = IMConversationType.PRIVATE;
         }
         return imConversationType;

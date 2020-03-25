@@ -75,6 +75,7 @@ public class AllFriendFragment extends BaseFragment {
 
             @Override
             public void fail(BackendServiceException e) {
+                swipeRefreshLayout.setRefreshing(false);
                 ExceptionHandler.handleBackendServiceException(activity, e);
             }
         });

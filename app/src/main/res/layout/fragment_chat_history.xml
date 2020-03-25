@@ -14,12 +14,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:text="chat history"/>
-
             <include
                 android:visibility="gone"
                 android:id="@+id/item_empty_view"
