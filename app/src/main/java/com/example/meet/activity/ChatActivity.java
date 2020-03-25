@@ -26,7 +26,6 @@ import com.example.meet.eventbus.EventBusConstant;
 import com.example.meet.handler.chat.ChatHandler;
 import com.example.meet.view.chat.ChatRecyclerViewAdapter;
 
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -68,6 +67,12 @@ public class ChatActivity extends BaseCommonStyleActivity {
         recyclerView = findViewById(R.id.mChatView);
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
         recyclerView.setAdapter(recyclerViewAdapter = new ChatRecyclerViewAdapter(friendName, friendPhoto, UserManager.getInstance().getUser().getNickName(), UserManager.getInstance().getUser().getPhoto()));
+        recyclerView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                recyclerView.scrollToPosition(recyclerViewAdapter.size() - 1);
+            }
+        });
 
         // set button event listeners
         initButtons();
@@ -135,7 +140,6 @@ public class ChatActivity extends BaseCommonStyleActivity {
                     // add IM Message
                     recyclerViewAdapter.add(imMessage);
                 }
-                recyclerView.scrollToPosition(recyclerViewAdapter.size() - 1);
                 recyclerViewAdapter.notifyDataSetChanged();
             }
 
@@ -180,7 +184,6 @@ public class ChatActivity extends BaseCommonStyleActivity {
     private void addIMMessageOnUI(IMMessage imMessage){
         recyclerViewAdapter.add(imMessage);
         recyclerViewAdapter.notifyDataSetChanged();
-        recyclerView.scrollToPosition(recyclerViewAdapter.size() - 1);
     }
 
 
