@@ -1,6 +1,10 @@
 package com.example.meet.activity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,10 +16,19 @@ import com.example.framework.backend.exception.BackendServiceException;
 import com.example.framework.backend.manager.UserManager;
 import com.example.framework.backend.messaging.message.IMMessage;
 import com.example.framework.backend.messaging.message.IMMessageType;
+import com.example.framework.backend.messaging.message.IMTextMessage;
 import com.example.framework.backend.service.IMessageService;
+import com.example.framework.eventbus.EventBusUtil;
+import com.example.framework.eventbus.MessageEvent;
 import com.example.framework.exception.ExceptionHandler;
 import com.example.meet.R;
+import com.example.meet.eventbus.EventBusConstant;
+import com.example.meet.handler.chat.ChatHandler;
 import com.example.meet.view.chat.ChatRecyclerViewAdapter;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.Collections;
 import java.util.List;
@@ -35,7 +48,6 @@ public class ChatActivity extends BaseCommonStyleActivity {
     private RecyclerView recyclerView;
 
     private ChatRecyclerViewAdapter recyclerViewAdapter;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,11 +69,44 @@ public class ChatActivity extends BaseCommonStyleActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
         recyclerView.setAdapter(recyclerViewAdapter = new ChatRecyclerViewAdapter(friendName, friendPhoto, UserManager.getInstance().getUser().getNickName(), UserManager.getInstance().getUser().getPhoto()));
 
+        // set button event listeners
+        initButtons();
+
         // update message data
-        updateMessageData();
+        updateHistoryMessageData();
+
+        // register event bus
+        EventBusUtil.registerEventBus(this);
     }
 
-    private  void updateMessageData(){
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBusUtil.unregisterEventBus(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(MessageEvent messageEvent){
+        if(messageEvent.getType() == EventBusConstant.UPDATE_CHAT_INFO){
+            addIMMessageOnUI((IMMessage) messageEvent.getData());
+        }
+    }
+
+    private void initButtons(){
+
+        // send button
+        Button sendButton = findViewById(R.id. btn_send_msg);
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendAndUpdateText();
+            }
+        });
+
+
+    }
+
+    private void updateHistoryMessageData(){
         IMessageService messageService = getBackendService(IMessageService.class);
         messageService.getLocalPrivateHistoryMessages(friendId, new BackendServiceCallback<List<IMMessage>>() {
             @Override
@@ -74,9 +119,8 @@ public class ChatActivity extends BaseCommonStyleActivity {
                 recyclerViewAdapter.clear();
                 long time = -1;
                 for(IMMessage imMessage : imMessages){
-                    recyclerViewAdapter.add(imMessage);
 
-                    // record time
+                    // record and add time
                     if(time == -1){
                         time = imMessage.getReceivedTime();
                     }
@@ -87,6 +131,9 @@ public class ChatActivity extends BaseCommonStyleActivity {
                         recyclerViewAdapter.add(timeMessage);
                         time = imMessage.getReceivedTime();
                     }
+
+                    // add IM Message
+                    recyclerViewAdapter.add(imMessage);
                 }
                 recyclerView.scrollToPosition(recyclerViewAdapter.size() - 1);
                 recyclerViewAdapter.notifyDataSetChanged();
@@ -99,8 +146,42 @@ public class ChatActivity extends BaseCommonStyleActivity {
         });
     }
 
+    private void sendAndUpdateText(){
 
+        // edit text
+        EditText editText = findViewById(R.id.et_input_msg);
+        String inputText = editText.getText().toString().trim();
+        if(TextUtils.isEmpty(inputText)){
+           return;
+        }
 
+        // send
+        IMessageService messageService = getBackendService(IMessageService.class);
+        IMTextMessage imTextMessage = IMTextMessage.createPrivateTextMessage(friendId, inputText, ChatHandler.class);
+        messageService.sendMessage(imTextMessage, new BackendServiceCallback<Object>() {
+            @Override
+            public void success(Object o) {
+
+            }
+
+            @Override
+            public void fail(BackendServiceException e) {
+                ExceptionHandler.handleBackendServiceException(ChatActivity.this, e);
+            }
+        });
+
+        // update local activity
+        addIMMessageOnUI(imTextMessage);
+
+        // clear edit text
+        editText.getText().clear();
+    }
+
+    private void addIMMessageOnUI(IMMessage imMessage){
+        recyclerViewAdapter.add(imMessage);
+        recyclerViewAdapter.notifyDataSetChanged();
+        recyclerView.scrollToPosition(recyclerViewAdapter.size() - 1);
+    }
 
 
 

@@ -9,7 +9,9 @@ public class EventBusUtil {
     }
 
     public static void unregisterEventBus(Object subscriber){
-        EventBus.getDefault().unregister(subscriber);
+        if( EventBus.getDefault().isRegistered(subscriber)){
+            EventBus.getDefault().unregister(subscriber);
+        }
     }
 
     public static void post(MessageEvent messageEvent){
