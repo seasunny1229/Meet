@@ -32,6 +32,9 @@ public class ChatRecyclerViewAdapter  extends RecyclerView.Adapter<BaseChatRecyc
         View itemView = View.inflate(parent.getContext(), viewType, null);
         BaseChatRecyclerViewHolder holder = null;
         switch (viewType){
+            case R.layout.layout_chat_time:
+                holder = new TimeChatRecyclerViewHolder(itemView);
+                break;
             case R.layout.layout_chat_left_text:
                 holder = new TextChatRecyclerViewHolder(itemView, friendName, friendPortraitUrl);
                 break;
@@ -58,11 +61,14 @@ public class ChatRecyclerViewAdapter  extends RecyclerView.Adapter<BaseChatRecyc
     @Override
     public int getItemViewType(int position) {
         IMMessage imMessage = imMessages.get(position);
-        boolean isOnRightSide = imMessage.getSourceId().equals(UserManager.getInstance().getUser().getUid());
+        boolean isOnRightSide = UserManager.getInstance().getUser().getUid().equals(imMessage.getSourceId());
         int resId = 0;
         switch (imMessages.get(position).getImMessageType()){
             case TEXT:
                 resId = isOnRightSide? R.layout.layout_chat_right_text : R.layout.layout_chat_left_text;
+                break;
+            case TIME:
+                resId = R.layout.layout_chat_time;
                 break;
             default:
                 break;

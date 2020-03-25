@@ -11,6 +11,7 @@ import com.example.framework.backend.callback.BackendServiceCallback;
 import com.example.framework.backend.exception.BackendServiceException;
 import com.example.framework.backend.manager.UserManager;
 import com.example.framework.backend.messaging.message.IMMessage;
+import com.example.framework.backend.messaging.message.IMMessageType;
 import com.example.framework.backend.service.IMessageService;
 import com.example.framework.exception.ExceptionHandler;
 import com.example.meet.R;
@@ -21,9 +22,13 @@ import java.util.List;
 
 public class ChatActivity extends BaseCommonStyleActivity {
 
+    // intent
     public static final String INTENT_EXTRA_FRIEND_USER_ID = "friend_user_id";
     public static final String INTENT_EXTRA_FRIEND_USER_NAME = "friend_user_name";
     public static final String INTENT_EXTRA_FRIEND_USER_PHOTO = "friend_user_photo";
+
+    // constant
+    private static final long TIME_DISPLAY_DURATION = 5 * 60 * 1000;
 
     private String friendId, friendName, friendPhoto;
 
@@ -67,8 +72,21 @@ public class ChatActivity extends BaseCommonStyleActivity {
 
                 // refresh adapter
                 recyclerViewAdapter.clear();
+                long time = -1;
                 for(IMMessage imMessage : imMessages){
                     recyclerViewAdapter.add(imMessage);
+
+                    // record time
+                    if(time == -1){
+                        time = imMessage.getReceivedTime();
+                    }
+                    else if(imMessage.getReceivedTime() - time > TIME_DISPLAY_DURATION){
+                        IMMessage timeMessage = new IMMessage();
+                        timeMessage.setImMessageType(IMMessageType.TIME);
+                        timeMessage.setReceivedTime(imMessage.getReceivedTime());
+                        recyclerViewAdapter.add(timeMessage);
+                        time = imMessage.getReceivedTime();
+                    }
                 }
                 recyclerView.scrollToPosition(imMessages.size() - 1);
                 recyclerViewAdapter.notifyDataSetChanged();

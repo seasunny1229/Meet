@@ -19,6 +19,10 @@ public class BaseChatRecyclerViewHolder extends RecyclerView.ViewHolder {
         this. portraitUrl = portraitUrl;
     }
 
+    public BaseChatRecyclerViewHolder(@NonNull View itemView) {
+        super(itemView);
+    }
+
     void set(IMMessage imMessage){
 
     }

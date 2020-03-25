@@ -22,6 +22,9 @@ public class IMMessage {
     // message type
     private IMMessageType imMessageType;
 
+    // message time stamp;
+    private long receivedTime;
+
     // extra info
     private String extra;
 
@@ -73,6 +76,14 @@ public class IMMessage {
         this.extra = extra;
     }
 
+    public long getReceivedTime() {
+        return receivedTime;
+    }
+
+    public void setReceivedTime(long receivedTime) {
+        this.receivedTime = receivedTime;
+    }
+
     @Override
     public String toString() {
         return "IMMessage{" +
@@ -81,6 +92,7 @@ public class IMMessage {
                 ", messageReceivingHandler=" + messageReceivingHandler +
                 ", imConversationType=" + imConversationType +
                 ", imMessageType=" + imMessageType +
+                ", receivedTime=" + receivedTime +
                 ", extra='" + extra + '\'' +
                 '}';
     }
