@@ -2,16 +2,13 @@ package com.example.framework.cloud.rongcloud.service;
 
 import com.example.framework.backend.callback.BackendServiceCallback;
 import com.example.framework.backend.messaging.converter.IMConverter;
-import com.example.framework.backend.messaging.info.ExtraInfo;
 import com.example.framework.backend.messaging.message.IMMessage;
 import com.example.framework.backend.service.IMessageService;
 import com.example.framework.cloud.Exception.CloudExceptionHandler;
-import com.example.framework.cloud.rongcloud.converter.extra.ExtraInfoUtil;
 import com.example.framework.cloud.rongcloud.converter.factory.MessageFactory;
-import com.example.framework.cloud.rongcloud.converter.filter.MessageFilter;
 import com.example.framework.cloud.rongcloud.converter.manager.RongCloudMessageConverterManager;
+import com.example.framework.cloud.rongcloud.converter.migration.MessageMigrationUtil;
 import com.example.framework.exception.ExceptionFactory;
-import com.example.framework.gson.GsonUtil;
 import com.example.framework.util.LogUtil;
 
 import java.util.ArrayList;
@@ -89,12 +86,13 @@ public class RongCloudMessageService implements IMessageService {
             public void onSuccess(List<Message> messages) {
                 List<IMMessage> imMessages = new ArrayList<>();
                 for(Message message : messages){
-                    if(!MessageFilter.isMessageValid((RongCloudMessageConverterManager)converter, message.getContent())){
-                        ExtraInfo extraInfo = new ExtraInfo();
-                        extraInfo.setMessageTypeName(ExtraInfoUtil.convertToIMMessageType(message).name());
-                        extraInfo.setConversationTypeName(ExtraInfoUtil.convertToIMConversationType(message).name());
-                        ((RongCloudMessageConverterManager) converter).getExtraInfoConverter(message.getContent().getClass()).setExtraInfo(message.getContent(), GsonUtil.toJson(extraInfo));
+
+                    // the permanent messages need migration checking
+                    if(!MessageMigrationUtil.isMessageVersionValid((RongCloudMessageConverterManager)converter, message.getContent())){
+                        MessageMigrationUtil.migrateExtraInfo((RongCloudMessageConverterManager)converter, message);
                     }
+
+                    // convert to local IM message
                     IMMessage imMessage = MessageFactory.createIMMessage(message.getContent());
                     converter.convertToLocalMessage(imMessage, message);
                     imMessages.add(imMessage);
