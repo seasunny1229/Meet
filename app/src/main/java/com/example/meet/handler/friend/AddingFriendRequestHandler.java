@@ -9,8 +9,11 @@ import com.example.framework.backend.messaging.message.IMMessage;
 import com.example.framework.backend.messaging.message.IMTextMessage;
 import com.example.framework.backend.service.INewFriendManagementService;
 import com.example.framework.cloud.application.IntegratedCloudServiceApplication;
+import com.example.framework.eventbus.EventBusUtil;
+import com.example.framework.eventbus.MessageEvent;
 import com.example.framework.exception.ExceptionHandler;
 import com.example.framework.util.LogUtil;
+import com.example.meet.eventbus.EventBusConstant;
 import com.example.meet.persistent.litepal.bean.NewFriend;
 import com.example.meet.persistent.litepal.constant.LitePalConstant;
 
@@ -36,7 +39,8 @@ public class AddingFriendRequestHandler extends BaseIMMessageReceivingHandler {
                     // 添加新好友
                     addNewFriend(context, service, imMessage);
 
-                    // TODO: use event bus to update UI
+                    // use event bus to update UI
+                    EventBusUtil.post(new MessageEvent(EventBusConstant.UPDATE_NEW_FRIEND_INFO));
                 }
             }
 

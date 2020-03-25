@@ -13,10 +13,16 @@ import com.example.framework.activity.BaseFullScreenStyleActivity;
 import com.example.framework.backend.callback.BackendServiceCallback;
 import com.example.framework.backend.exception.BackendServiceException;
 import com.example.framework.backend.service.INewFriendManagementService;
+import com.example.framework.eventbus.EventBusUtil;
+import com.example.framework.eventbus.MessageEvent;
 import com.example.framework.exception.ExceptionHandler;
 import com.example.meet.R;
+import com.example.meet.eventbus.EventBusConstant;
 import com.example.meet.persistent.litepal.bean.NewFriend;
 import com.example.meet.view.newfriend.NewFriendRecyclerViewAdapter;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -55,6 +61,9 @@ public class NewFriendActivity extends BaseFullScreenStyleActivity {
 
         // show new friend data
         updateNewFriendList();
+
+        // event bus
+        EventBusUtil.registerEventBus(this);
     }
 
     private void initView(){
@@ -63,7 +72,6 @@ public class NewFriendActivity extends BaseFullScreenStyleActivity {
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(recyclerViewAdapter = new NewFriendRecyclerViewAdapter());
     }
-
 
     private void updateNewFriendList(){
         Observable.create(new ObservableOnSubscribe<List<NewFriend>>() {
@@ -146,6 +154,14 @@ public class NewFriendActivity extends BaseFullScreenStyleActivity {
         super.onDestroy();
         if(disposable != null && !disposable.isDisposed()){
             disposable.dispose();
+        }
+        EventBusUtil.unregisterEventBus(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(MessageEvent messageEvent){
+        if(messageEvent.getType() == EventBusConstant.UPDATE_NEW_FRIEND_INFO){
+            updateNewFriendList();
         }
     }
 }

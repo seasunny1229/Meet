@@ -14,4 +14,8 @@ public class EventBusConstant {
     // post: ChatActivity to clear unread messages
     // subscribe: ChatHistoryFragment to show empty unread messages
     public static final int CLEAR_UNREAD_MESSAGES = 1003;
+
+    // post: AddingFriendRequestHandler when a new friend request is received by user
+    // subscribe: NewFriendActivity to update new friend list and status
+    public static final int UPDATE_NEW_FRIEND_INFO = 1004;
 }
