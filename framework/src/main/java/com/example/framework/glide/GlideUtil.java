@@ -33,8 +33,8 @@ public class GlideUtil {
         Glide.with(mContext.getApplicationContext())
                 .load(url)
                 .override(w, h)
-                .placeholder(R.drawable.img_glide_load_ing)
-                .error(R.drawable.img_glide_load_error)
+                .placeholder(R.drawable.img_glide_load_error2)
+                .error(R.drawable.img_glide_load_error2)
                 .format(DecodeFormat.PREFER_RGB_565)
                 // 取消动画，防止第一次加载不出来
                 .dontAnimate()

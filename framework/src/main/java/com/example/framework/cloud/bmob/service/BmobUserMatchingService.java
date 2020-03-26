@@ -40,7 +40,7 @@ public class BmobUserMatchingService implements IUserMatchingService, ServiceDis
 
     private Disposable disposable;
 
-    private boolean isMatching, isLock;
+    private boolean isMatching, isLock = true;
 
     private IMFate imFate;
 
