@@ -113,7 +113,7 @@ public class UserInfoActivity extends BaseFullScreenStyleActivity {
     private UserItemInfo[] getUserItemInfo(User user){
         return new UserItemInfo[]{
            new UserItemInfo(0x881E90FF, getString(R.string.text_me_info_sex), user.isSex()? getString(R.string.text_me_info_boy) : getString(R.string.text_me_info_girl)),
-           new UserItemInfo(0x8800FF7F, getString(R.string.text_me_info_age), user.getAge() + getString(R.string.text_search_age)),
+           new UserItemInfo(0x8800FF7F, getString(R.string.text_me_info_age), String.valueOf(user.getAge())),
            new UserItemInfo(0x88FFD700, getString(R.string.text_me_info_birthday), user.getBirthday()),
            new UserItemInfo(0x88FF6347, getString(R.string.text_me_info_constellation), user.getConstellation()),
            new UserItemInfo(0x88F08080, getString(R.string.text_me_info_hobby), user.getHobby()),

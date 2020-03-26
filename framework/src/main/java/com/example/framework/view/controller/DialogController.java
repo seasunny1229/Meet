@@ -19,7 +19,7 @@ public abstract class DialogController {
     };
 
     public void hide(){
-        dialog.hide();
+        dialog.dismiss();
     };
 
 

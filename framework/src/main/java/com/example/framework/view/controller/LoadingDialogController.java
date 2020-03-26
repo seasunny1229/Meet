@@ -3,6 +3,7 @@ package com.example.framework.view.controller;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -52,6 +53,12 @@ public class LoadingDialogController extends DialogController{
             TextView loadingTextView = dialog.findViewById(R.id.tv_loading_text);
             loadingTextView.setText(text);
         }
+        return this;
+    }
+
+    public LoadingDialogController hideLoadingText(){
+        TextView loadingTextView = dialog.findViewById(R.id.tv_loading_text);
+        loadingTextView.setVisibility(View.GONE);
         return this;
     }
 

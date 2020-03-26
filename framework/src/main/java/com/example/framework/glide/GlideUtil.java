@@ -45,5 +45,21 @@ public class GlideUtil {
                 .into(imageView);
     }
 
+    public static void load(Context mContext, String url, int w, int h, ImageView imageView, int placeholderResId, int loadResId) {
+        Glide.with(mContext.getApplicationContext())
+                .load(url)
+                .override(w, h)
+                .placeholder(placeholderResId)
+                .error(loadResId)
+                .format(DecodeFormat.PREFER_RGB_565)
+                // 取消动画，防止第一次加载不出来
+                .dontAnimate()
+                //加载缩略图
+                .thumbnail(0.3f)
+                .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(imageView);
+    }
+
 
 }

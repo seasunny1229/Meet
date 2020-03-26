@@ -46,7 +46,7 @@ import io.reactivex.schedulers.Schedulers;
 public class MainActivity extends BaseMainActivity {
 
     // tag index
-    private static final int TAG_INDEX = 1;
+    private static final int TAG_INDEX = 0;
 
     public static final int UPDATE_TOKEN_REQUEST_CODE = 1010;
 

@@ -8,11 +8,13 @@ import com.example.framework.backend.service.INewFriendManagementService;
 import com.example.framework.backend.service.IConnectionService;
 import com.example.framework.backend.service.IUserInfoService;
 import com.example.framework.backend.service.IUserLoginService;
+import com.example.framework.backend.service.IUserMatchingService;
 import com.example.framework.backend.service.IUserQueryService;
 import com.example.framework.cloud.appserver.RongCloudAppServerManager;
 import com.example.framework.cloud.bmob.service.BmobFriendManagementService;
 import com.example.framework.cloud.bmob.service.BmobUserInfoService;
 import com.example.framework.cloud.bmob.service.BmobUserLoginService;
+import com.example.framework.cloud.bmob.service.BmobUserMatchingService;
 import com.example.framework.cloud.bmob.service.BmobUserQueryService;
 import com.example.framework.cloud.litepal.LitePalNewFriendManagementService;
 import com.example.framework.cloud.rongcloud.service.RongCloudConnectionService;
@@ -57,6 +59,9 @@ public abstract class IntegratedCloudServiceApplication extends BackendServiceAp
         }
         else if(clazz == IUserQueryService.class){
             return (T) BmobUserQueryService.getInstance();
+        }
+        else if(clazz == IUserMatchingService.class){
+            return (T) BmobUserMatchingService.getInstance();
         }
         else if(clazz == IConnectionService.class){
             return (T) RongCloudConnectionService.getInstance(this);
