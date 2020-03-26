@@ -15,6 +15,18 @@ public interface IUserMatchingService {
     // 随机查找一定数量的用户
     void randomFindUsers(int count, BackendServiceCallback<List<User>> backendServiceCallback);
 
+    // 随机匹配
+    void matchUserByRandom(User user, BackendServiceCallback<User> backendServiceCallback);
+
+    // 灵魂匹配
+    void matchUserBySoul(User user, BackendServiceCallback<User> backendServiceCallback);
+
+    // 缘分匹配
+    void matchUserByFate(User user, BackendServiceCallback<User> backendServiceCallback);
+
+    // 恋爱匹配
+    void matchUserByLove(User user, BackendServiceCallback<User> backendServiceCallback);
+
 
 }
 

@@ -16,11 +16,14 @@ public abstract class DialogController {
 
     public void show(){
         dialog.show();
-    };
+    }
 
     public void hide(){
-        dialog.dismiss();
-    };
+        dialog.hide();
+    }
 
+    public void dismiss(){
+        dialog.dismiss();
+    }
 
 }

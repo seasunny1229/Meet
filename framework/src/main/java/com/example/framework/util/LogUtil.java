@@ -35,10 +35,26 @@ public class LogUtil {
         }
     }
 
+    public static void i(String className, String text){
+        if(BuildConfig.LOG_DEBUG){
+            if(!TextUtils.isEmpty(text)){
+                Log.i(className, text);
+            }
+        }
+    }
+
     public static void e(String text){
         if(BuildConfig.LOG_DEBUG){
             if(!TextUtils.isEmpty(text)){
                 Log.e(BuildConfig.LOG_TAG, text);
+            }
+        }
+    }
+
+    public static void e(String className, String text){
+        if(BuildConfig.LOG_DEBUG){
+            if(!TextUtils.isEmpty(text)){
+                Log.e(className, text);
             }
         }
     }
