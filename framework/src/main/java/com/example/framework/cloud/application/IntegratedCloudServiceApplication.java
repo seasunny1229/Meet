@@ -6,12 +6,14 @@ import com.example.framework.backend.service.IFriendManagementService;
 import com.example.framework.backend.service.IMessageService;
 import com.example.framework.backend.service.INewFriendManagementService;
 import com.example.framework.backend.service.IConnectionService;
+import com.example.framework.backend.service.IPushService;
 import com.example.framework.backend.service.IUserInfoService;
 import com.example.framework.backend.service.IUserLoginService;
 import com.example.framework.backend.service.IUserMatchingService;
 import com.example.framework.backend.service.IUserQueryService;
 import com.example.framework.cloud.appserver.RongCloudAppServerManager;
 import com.example.framework.cloud.bmob.service.BmobFriendManagementService;
+import com.example.framework.cloud.bmob.service.BmobPushService;
 import com.example.framework.cloud.bmob.service.BmobUserInfoService;
 import com.example.framework.cloud.bmob.service.BmobUserLoginService;
 import com.example.framework.cloud.bmob.service.BmobUserMatchingService;
@@ -77,6 +79,9 @@ public abstract class IntegratedCloudServiceApplication extends BackendServiceAp
         }
         else if(clazz == IConversationService.class){
             return (T) RongCloudConversationService.getInstance();
+        }
+        else if(clazz == IPushService.class){
+            return (T) BmobPushService.getInstance();
         }
 
         return null;
