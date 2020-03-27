@@ -50,6 +50,7 @@
 
     <TextView
         android:id="@+id/tv_connect_status"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:background="@color/color_star_bg"
