@@ -96,6 +96,9 @@
         <!-- chat -->
         <activity android:name=".activity.ChatActivity"></activity>
 
+        <!-- push -->
+        <activity android:name=".activity.PushActivity"></activity>
+
         <!-- cloud service -->
         <service android:name=".service.CloudService"/>
 

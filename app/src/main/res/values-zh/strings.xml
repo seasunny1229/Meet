@@ -108,4 +108,8 @@
     <string name="text_chat_tab_title_2">通话记录</string>
     <string name="text_chat_tab_title_3">全部好友</string>
 
+    <!-- push -->
+    <string name="text_square_psuh">发布</string>
+    <string name="text_square_hint_text">记录这一刻，晒给懂你的人..</string>
+
 </resources>

@@ -1,8 +1,10 @@
 package com.example.meet.fragment;
 
+import android.content.Intent;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,12 +18,14 @@ import com.example.framework.backend.service.IPushService;
 import com.example.framework.exception.ExceptionHandler;
 import com.example.framework.fragment.BaseFragment;
 import com.example.meet.R;
+import com.example.meet.activity.PushActivity;
 import com.example.meet.view.push.PushRecyclerViewAdapter;
 
 import java.util.Collections;
 import java.util.List;
 
 public class SquareFragment extends BaseFragment {
+    private static final int REQUEST_CODE = 2000;
 
     @Override
     protected int getLayoutId() {
@@ -33,6 +37,14 @@ public class SquareFragment extends BaseFragment {
     private SwipeRefreshLayout swipeRefreshLayout;
 
     private PushRecyclerViewAdapter pushRecyclerViewAdapter;
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if(requestCode == REQUEST_CODE){
+            updateData();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
     @Override
     protected void initView(final View view) {
@@ -81,6 +93,17 @@ public class SquareFragment extends BaseFragment {
             }
         });
 
+        // push button
+        view.findViewById(R.id.iv_push).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(new Intent(view.getContext(), PushActivity.class), REQUEST_CODE);
+            }
+        });
+
+        // update data
+        updateData();
+
     }
 
     private void updateData(){
@@ -115,6 +138,7 @@ public class SquareFragment extends BaseFragment {
         view.findViewById(R.id.item_empty_view).setVisibility(View.GONE);
         view.findViewById(R.id.mSquareView).setVisibility(View.VISIBLE);
         Collections.reverse(list);
+        pushRecyclerViewAdapter.clear();
         for(PushInfo pushInfo : list){
             pushRecyclerViewAdapter.add(pushInfo);
         }

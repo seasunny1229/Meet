@@ -108,4 +108,8 @@
     <string name="text_chat_tab_title_2">Call records</string>
     <string name="text_chat_tab_title_3">All friends</string>
 
+    <!-- push -->
+    <string name="text_square_psuh">release</string>
+    <string name="text_square_hint_text">Record this moment and share it with someone who understands you..</string>
+
 </resources>

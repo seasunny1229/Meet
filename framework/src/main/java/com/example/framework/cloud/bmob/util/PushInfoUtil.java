@@ -12,8 +12,8 @@ public class PushInfoUtil {
         pushInfo.setType(PushType.valueOf(push.getType()));
         pushInfo.setUid(push.getUid());
         pushInfo.setTime(push.getTime());
-        push.setText(push.getType());
-        push.setMediaUrl(push.getMediaUrl());
+        pushInfo.setText(push.getText());
+        pushInfo.setMediaUrl(push.getMediaUrl());
 
         return pushInfo;
     }

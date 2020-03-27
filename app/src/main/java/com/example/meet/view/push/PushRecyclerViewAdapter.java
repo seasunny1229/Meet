@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.framework.backend.pushing.bean.PushInfo;
+import com.example.meet.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,7 @@ public class PushRecyclerViewAdapter extends RecyclerView.Adapter<PushRecyclerVi
 
     @Override
     public int getItemViewType(int position) {
-        return super.getItemViewType(position);
+        return R.layout.layout_square_item;
     }
 
     public void clear(){
