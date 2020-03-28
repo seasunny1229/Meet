@@ -18,6 +18,7 @@ import com.example.framework.util.ToastUtil;
 import com.example.framework.view.controller.LoadingDialogController;
 import com.example.meet.R;
 import com.example.meet.activity.AddingFriendActivity;
+import com.example.meet.activity.QrCodeActivity;
 import com.example.meet.activity.UserInfoActivity;
 import com.example.meet.view.cloud.CloudTagAdapter;
 import com.moxun.tagcloudlib.view.TagCloudView;
@@ -25,6 +26,7 @@ import com.moxun.tagcloudlib.view.TagCloudView;
 import java.util.List;
 
 public class StarFragment extends BaseFragment {
+    private static final int REQUEST_CODE = 2000;
     private static final int NUM_CLOUD_TAG_COUNT = 100;
 
     private IUserMatchingService userMatchingService;
@@ -79,6 +81,14 @@ public class StarFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), AddingFriendActivity.class));
+            }
+        });
+
+        // 扫描二维码功能按键
+        view.findViewById(R.id.iv_camera).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(new Intent(getActivity(), QrCodeActivity.class), REQUEST_CODE);
             }
         });
 

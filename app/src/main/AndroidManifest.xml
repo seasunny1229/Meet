@@ -99,6 +99,9 @@
         <!-- push -->
         <activity android:name=".activity.PushActivity"></activity>
 
+        <!-- qr code -->
+        <activity android:name=".activity.QrCodeActivity"></activity>
+
         <!-- cloud service -->
         <service android:name=".service.CloudService"/>
 
