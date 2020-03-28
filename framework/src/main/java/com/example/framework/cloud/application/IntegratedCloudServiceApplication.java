@@ -22,6 +22,7 @@ import com.example.framework.cloud.litepal.LitePalNewFriendManagementService;
 import com.example.framework.cloud.rongcloud.service.RongCloudConnectionService;
 import com.example.framework.cloud.rongcloud.service.RongCloudConversationService;
 import com.example.framework.cloud.rongcloud.service.RongCloudMessageService;
+import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
 import org.litepal.LitePal;
 
@@ -47,7 +48,7 @@ public abstract class IntegratedCloudServiceApplication extends BackendServiceAp
         initBmob();
         initRongCloud();
         initLitePal();
-
+        initZxing();
     }
 
     @Override
@@ -117,6 +118,10 @@ public abstract class IntegratedCloudServiceApplication extends BackendServiceAp
 
     private void initLitePal(){
         LitePal.initialize(this);
+    }
+
+    private void initZxing(){
+        ZXingLibrary.initDisplayOpinion(this);
     }
     // endregion
 

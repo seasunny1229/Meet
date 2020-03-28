@@ -86,6 +86,9 @@ dependencies {
     // litepal
     api 'org.litepal.android:java:3.0.0'
 
+    // qrcode
+    api 'cn.yipianfengye.android:zxing-library:2.2'
+
     // bmob SDK
     implementation project(':BmobLib')
 
