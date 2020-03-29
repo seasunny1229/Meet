@@ -4,11 +4,13 @@ import com.example.framework.backend.messaging.handler.base.BaseIMMessageReceivi
 import com.example.framework.backend.messaging.handler.manager.MessageHandlerManager;
 import com.example.framework.cloud.application.IntegratedCloudServiceApplication;
 import com.example.framework.cloud.rongcloud.converter.filter.IMMessageReceiveHandlerFilter;
+import com.example.framework.notification.NotificationUtil;
 import com.example.meet.BuildConfig;
 import com.example.meet.backend.BackendServiceConfig;
 import com.example.meet.handler.chat.ChatHandler;
 import com.example.meet.handler.friend.AddingFriendAgreeHandler;
 import com.example.meet.handler.friend.AddingFriendRequestHandler;
+import com.example.meet.notification.NotificationConstant;
 
 
 public class MainApplication extends IntegratedCloudServiceApplication {
@@ -44,5 +46,10 @@ public class MainApplication extends IntegratedCloudServiceApplication {
                 new ChatHandler()
         });
         MessageHandlerManager.getInstance().addHandlerFilter(MessageHandlerManager.MessageHandlerFilterType.chat, new IMMessageReceiveHandlerFilter(ChatHandler.class));
+
+        // init notification
+        NotificationUtil.createChannels(this,
+                new String[]{NotificationConstant.CHANNEL_MESSAGE},
+                new String[]{NotificationConstant.CHANNEL_MESSAGE_NAME});
     }
 }

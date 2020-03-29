@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.framework.activity.BaseCommonStyleActivity;
+import com.example.framework.backend.bean.User;
 import com.example.framework.backend.callback.BackendServiceCallback;
 import com.example.framework.backend.exception.BackendServiceException;
 import com.example.framework.backend.manager.UserManager;
@@ -18,6 +19,7 @@ import com.example.framework.backend.messaging.message.IMMessage;
 import com.example.framework.backend.messaging.message.IMMessageType;
 import com.example.framework.backend.messaging.message.IMTextMessage;
 import com.example.framework.backend.service.IMessageService;
+import com.example.framework.backend.service.IUserInfoService;
 import com.example.framework.eventbus.EventBusUtil;
 import com.example.framework.eventbus.MessageEvent;
 import com.example.framework.exception.ExceptionHandler;
@@ -63,10 +65,14 @@ public class ChatActivity extends BaseCommonStyleActivity {
             getSupportActionBar().setTitle(friendName);
         }
 
+        // service
+        IUserInfoService<User> userInfoService = getBackendService(IUserInfoService.class);
+        User user = userInfoService.getUser();
+
         // recycler view
         recyclerView = findViewById(R.id.mChatView);
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
-        recyclerView.setAdapter(recyclerViewAdapter = new ChatRecyclerViewAdapter(friendName, friendPhoto, UserManager.getInstance().getUser().getNickName(), UserManager.getInstance().getUser().getPhoto()));
+        recyclerView.setAdapter(recyclerViewAdapter = new ChatRecyclerViewAdapter(this, friendName, friendPhoto, user.getNickName(), user.getPhoto()));
         recyclerView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
             public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
@@ -188,6 +194,9 @@ public class ChatActivity extends BaseCommonStyleActivity {
     private void addIMMessageOnUI(IMMessage imMessage){
         recyclerViewAdapter.add(imMessage);
         recyclerViewAdapter.notifyDataSetChanged();
+        final IMessageService messageService = getBackendService(IMessageService.class);
+        messageService.clearLocalPrivateUnreadMessages(friendId, null);
+        EventBusUtil.post(new MessageEvent(EventBusConstant.CLEAR_UNREAD_MESSAGES));
     }
 
 

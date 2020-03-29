@@ -1,13 +1,17 @@
 package com.example.meet.view.chat;
 
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.framework.activity.BaseActivity;
+import com.example.framework.backend.bean.User;
 import com.example.framework.backend.manager.UserManager;
 import com.example.framework.backend.messaging.message.IMMessage;
+import com.example.framework.backend.service.IUserInfoService;
 import com.example.meet.R;
 
 import java.util.ArrayList;
@@ -17,9 +21,12 @@ public class ChatRecyclerViewAdapter  extends RecyclerView.Adapter<BaseChatRecyc
 
     private String friendName, friendPortraitUrl, myName, myPortraitUrl;
 
+    private BaseActivity baseActivity;
+
     private List<IMMessage> imMessages = new ArrayList<>();
 
-    public ChatRecyclerViewAdapter(String friendName, String friendPortraitUrl, String myName, String myPortraitUrl) {
+    public ChatRecyclerViewAdapter(BaseActivity baseActivity, String friendName, String friendPortraitUrl, String myName, String myPortraitUrl) {
+        this.baseActivity = baseActivity;
         this.friendName = friendName;
         this.friendPortraitUrl = friendPortraitUrl;
         this.myName = myName;
@@ -60,8 +67,9 @@ public class ChatRecyclerViewAdapter  extends RecyclerView.Adapter<BaseChatRecyc
 
     @Override
     public int getItemViewType(int position) {
+        IUserInfoService<User> userInfoService = baseActivity.getBackendService(IUserInfoService.class);
         IMMessage imMessage = imMessages.get(position);
-        boolean isOnRightSide = UserManager.getInstance().getUser().getUid().equals(imMessage.getSourceId());
+        boolean isOnRightSide = userInfoService.getUser().getUid().equals(imMessage.getSourceId());
         int resId = 0;
         switch (imMessages.get(position).getImMessageType()){
             case TEXT:
