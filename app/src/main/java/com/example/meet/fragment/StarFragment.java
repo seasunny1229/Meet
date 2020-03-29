@@ -194,6 +194,4 @@ public class StarFragment extends BaseFragment {
         intent.putExtra(UserInfoActivity.INTENT_EXTRA_FRIEND_USER_ID, user.getUid());
         startActivity(intent);
     }
-
-
 }

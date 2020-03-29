@@ -48,7 +48,7 @@ android {
             buildConfigField("boolean", "LOG_DEBUG", "true")
             buildConfigField("String", "LOG_TAG", "\"Meet\"")
             buildConfigField("String", "SP_NAME", "\"CONFIG\"")
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
