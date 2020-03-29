@@ -1,9 +1,13 @@
 package com.example.meet.fragment;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import androidx.annotation.Nullable;
 
 import com.example.framework.activity.BaseActivity;
 import com.example.framework.backend.bean.User;
@@ -14,6 +18,7 @@ import com.example.framework.backend.manager.UserManager;
 import com.example.framework.backend.service.IUserMatchingService;
 import com.example.framework.exception.ExceptionHandler;
 import com.example.framework.fragment.BaseFragment;
+import com.example.framework.util.LogUtil;
 import com.example.framework.util.ToastUtil;
 import com.example.framework.view.controller.LoadingDialogController;
 import com.example.meet.R;
@@ -22,6 +27,7 @@ import com.example.meet.activity.QrCodeActivity;
 import com.example.meet.activity.UserInfoActivity;
 import com.example.meet.view.cloud.CloudTagAdapter;
 import com.moxun.tagcloudlib.view.TagCloudView;
+import com.uuzuche.lib_zxing.activity.CodeUtils;
 
 import java.util.List;
 
@@ -110,6 +116,38 @@ public class StarFragment extends BaseFragment {
     public void onDestroy() {
         super.onDestroy();
         ((ServiceDisposable)userMatchingService).dispose();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_CODE){
+            if(data == null){
+                return;
+            }
+
+            Bundle bundle = data.getExtras();
+            if(bundle == null){
+                return;
+            }
+
+            if(bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS){
+                String result = bundle.getString(CodeUtils.RESULT_STRING);
+                if(!TextUtils.isEmpty(result)){
+                    LogUtil.e(StarFragment.class.getName(), "扫描成功：" + result);
+                    ToastUtil.toast(getActivity(), "扫描成功：" + result);
+                }
+                else {
+                    LogUtil.e(StarFragment.class.getName(), "二维码错误");
+                    ToastUtil.toast(getActivity(), "二维码错误");
+                }
+            }
+            else {
+                LogUtil.e(StarFragment.class.getName(), "扫描失败");
+                ToastUtil.toast(getActivity(), "扫描失败");
+            }
+        }
+
     }
 
     private void findUser(int index){
