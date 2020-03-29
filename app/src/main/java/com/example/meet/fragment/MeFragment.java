@@ -19,6 +19,7 @@ import com.example.framework.util.ToastUtil;
 import com.example.meet.R;
 import com.example.meet.activity.MeInfoActivity;
 import com.example.meet.activity.NewFriendActivity;
+import com.example.meet.activity.SharePersonalQrCodeActivity;
 import com.example.meet.eventbus.EventBusConstant;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -91,6 +92,14 @@ public class MeFragment extends BaseFragment {
                 jumpToNewFriendManagement();
             }
         });
+
+        // 跳转到扫描个人信息二维码页面
+        mView.findViewById(R.id.ll_share).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                jumpToPersonalQrCode();
+            }
+        });
     }
 
     private void jumpToSettingUserInfo(){
@@ -100,6 +109,12 @@ public class MeFragment extends BaseFragment {
     private void jumpToNewFriendManagement(){
         startActivity(new Intent(getActivity(), NewFriendActivity.class));
     }
+
+    private void jumpToPersonalQrCode(){
+        startActivity(new Intent(getActivity(), SharePersonalQrCodeActivity.class));
+    }
+
+
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(MessageEvent messageEvent){
