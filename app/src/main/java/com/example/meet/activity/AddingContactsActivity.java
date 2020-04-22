@@ -41,7 +41,6 @@ public class AddingContactsActivity extends BaseCommonStyleActivity {
         contactView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         contactView.setAdapter(addingContactsRecyclerViewAdapter);
 
-
         // add data in recycler view
         addDataInRecyclerView(addingContactsRecyclerViewAdapter);
 
